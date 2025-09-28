@@ -24,20 +24,124 @@
             let a = 1;
             while(a <= 10){
                 if(a%2 == 0){
-                    respuestas += a+",";
+                    respuesta += a+",";
                 }
                 a++;
             }
-            console.log("Multiplos de 2: "+respuestas)
+            console.log("Multiplos de 3: "+respuesta)
             let b = 1;
             while(b <= 10){
-                if(b%2 == 0){
-                    respuestas += b+",";
+                if(b%3 == 0){
+                    respuesta += b+",";
                 }
                 b++;
             }
-            console.log("Multiplos de 2: "+respuestas)
+            console.log("Multiplos de 2: "+respuesta)
             //4)
+            let numero1 = prompt("Por favor introduzca un numero","1")
+            let numero2 = prompt("Por favor introduzca un segundo numero","2")
+            let sum = parseFloat(numero1) + parseFloat(numero2)
+            console.log("La suma de los numeros: "+numero1+"+"+numero2+" es igual a: "+ sum);
+
+            //5)
+            let givenAnio = prompt("Por favor introduzca un año","1999")
+            if ((givenAnio%4 === 0 && givenAnio % 100 !== 0 ) || givenAnio % 400 === 0)
+                console.log("El año dado "+givenAnio+" es bisiesto")
+            console.log("El año dado "+givenAnio+" no es bisiesto")
+
+            //6)
+            let division = 80 / 4
+            console.log("Resultado de 80/4: "+division)
+
+            //7)
+            let multiplicacion = 120 * 6
+            console.log("Resultado de 120 * 6: "+multiplicacion)
+
+            //8)
+
+            /*
+            Tenemos este ejemplo de bucle while:
+            while(i<=100){
+                i++;
+            }
+            
+            Lo podemos convertir en un bucle for de esta forma:
+
+            for(let i=0;i<=100;i++){
+                console.log("Funciona correctamente el bucle")
+            }
+            */
+
+            //9)
+
+            let validacion = prompt("Quiere usted usar la primera calculadora? s/n","s")
+            if(validacion == "s" || validacion == "S"){
+                let primerNum = prompt("Deme un primer numero","3")
+                let segundoNum = prompt("Deme un segundo numero","4")
+                let cuenta = prompt("Introduzca el tipo de cuenta que quiere realizar: (+,-,*,/)","+")
+                switch(cuenta){
+                    case '+':
+                        let suma = parseFloat(primerNum) + parseFloat(segundoNum)
+                        window.alert("Respuesta de la suma: "+suma)
+                        break;
+                    case '-':
+                        let resta = parseFloat(primerNum) - parseFloat(segundoNum)
+                        window.alert("Respuesta de la resta: "+resta)
+                        break;
+                    case '*':
+                        let multiplicacion = parseFloat(primerNum) * parseFloat(segundoNum)
+                        window.alert("Respuesta de la multiplicacion: "+multiplicacion)
+                        break;
+                    case '/':
+                        if(segundoNum === "0")
+                            window.alert("No se puede dividir entre 0")
+                        else{
+                            let division = parseFloat(primerNum) / parseFloat(segundoNum)
+                            window.alert("Respuesta de la division: "+division)
+                        }
+                        break;
+                    default:
+                        window.alert("Usted no ha introducido bien algún dato en la primera calculadora.")
+                }
+            }
+
+            //10)
+            let validacion2 = prompt("Quiere usted usar la segunda calculadora? s/n","s")
+            let flag = true
+            while(flag){
+                if(validacion2 == "s" || validacion2 == "S"){
+                let primerNum = prompt("Deme un primer numero","3")
+                let segundoNum = prompt("Deme un segundo numero","4")
+                let cuenta = prompt("Introduzca el tipo de cuenta que quiere realizar: (+,-,*,/) introduzca Salir to exit","+")
+                switch(cuenta){
+                    case '+':
+                        let suma = parseFloat(primerNum) + parseFloat(segundoNum)
+                        window.alert("Respuesta de la suma: "+suma)
+                        break;
+                    case '-':
+                        let resta = parseFloat(primerNum) - parseFloat(segundoNum)
+                        window.alert("Respuesta de la resta: "+resta)
+                        break;
+                    case '*':
+                        let multiplicacion = parseFloat(primerNum) * parseFloat(segundoNum)
+                        window.alert("Respuesta de la multiplicacion: "+multiplicacion)
+                        break;
+                    case '/':
+                        if(segundoNum === "0")
+                            window.alert("No se puede dividir entre 0")
+                        else{
+                            let division = parseFloat(primerNum) / parseFloat(segundoNum)
+                            window.alert("Respuesta de la division: "+division)
+                        }
+                        break;
+                    case 'Salir':
+                        flag = false;
+                    default:
+                        if(flag)
+                            window.alert("Usted no ha introducido bien algún dato en la primera calculadora.")
+                }
+            }
+            }
 
         </script>
     </body>
@@ -60,7 +164,7 @@
 8) Transformar un bucle while en un bucle for
 9) Realice una calculadora con las operacioens básicas: suma, resta, multiplicacion y division. Se le debe pedir al usuario dos numeros
 , la operacion a realizar y mostrar el resultado.
-10) Modificar el ejercicio anterior para añadir una operacion de salir, de modo qje mientras el usuario no elija la operacion salir
+10) Modificar el ejercicio anterior para añadir una operacion de salir, de modo que mientras el usuario no elija la operacion salir
 estara realizando continuamente operaciones.
 Consideraciones a tener en cuenta
     En la pagina web deben mostrarse las soluciones (con doument.write)
