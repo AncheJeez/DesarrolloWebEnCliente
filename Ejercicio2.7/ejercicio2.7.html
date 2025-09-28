@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<html lang="es">
+<head>
+    <title>Ejercicios 2.7</title>
+</head>
+    <body>
+        <script>
+            //1)
+            let x = 5;
+            let y = 10;
+            if (x > y)
+                console.log(x+" es mayor que "+y);
+            else
+                console.log(y+" es mayor que "+x);
+            //2)
+            let respuesta = ""
+            for( let i = 0;i <=100; i++){
+                if (i%5 == 0)
+                    respuesta += i+",";
+            }
+            console.log("Multiplos de 5 del 0-100: "+respuesta)
+            //3)
+            let a = 1;
+            while(a <= 10){
+                if(a%2 == 0){
+                    respuestas += a+",";
+                }
+                a++;
+            }
+            console.log("Multiplos de 2: "+respuestas)
+            let b = 1;
+            while(b <= 10){
+                if(b%2 == 0){
+                    respuestas += b+",";
+                }
+                b++;
+            }
+            console.log("Multiplos de 2: "+respuestas)
+            //4)
+
+        </script>
+    </body>
+</html>
+
+<!--
+1) Cree dos variables numericas y asigneles un valor entero, Realice un codigo que compruebe cual es el mayor.
+2) Muestre los numeros multiplos de 5 desde el numero 1 al numero 100 incluido
+3) Muestre los 10 primeros numeros multiplos de 2 y de 3
+4) Preguntar por dos numeros y realizar una suma con ellos. Los numeros pueden tener decimales. Pida los numeros con prompt.
+5) Determinar si un año es o no bisiesto. Para ello tenga en cuenta las siguientes instrucciones.
+    Si el año es uniformemente divisibe por 4, vaya al paso 2. De lo contrario, vaya al paso 5
+    Si el año es uniformemente divisible por 100, vaya al paso 3. De lo contrario, vaya al paso 4
+    Si el año es uniformemente divisible por 400, vaya al paso 4. De los contrario, vaya al paso 5.
+    El año es un año bisiesto (tiene 366 dias)
+    El año no es un año bisiesto (tiene 365 dias)
+
+6) 80/4
+7) 120*16
+8) Transformar un bucle while en un bucle for
+9) Realice una calculadora con las operacioens básicas: suma, resta, multiplicacion y division. Se le debe pedir al usuario dos numeros
+, la operacion a realizar y mostrar el resultado.
+10) Modificar el ejercicio anterior para añadir una operacion de salir, de modo qje mientras el usuario no elija la operacion salir
+estara realizando continuamente operaciones.
+Consideraciones a tener en cuenta
+    En la pagina web deben mostrarse las soluciones (con doument.write)
+    En el segundo y el tercero deben realizarse con bucles distintos
+    Los ejercicios 6 y 7 se realizaran empleando operadoes de desplazamiento de bits, sabiendo que cuando desplazamos 1 bit a la derecha
+    dividimos un entero por 2 y cuando lo desplazamos a la izquierda estamos multiplicando por 2
+
+-->
