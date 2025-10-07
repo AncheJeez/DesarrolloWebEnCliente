@@ -4,7 +4,7 @@
 <head>
     <title>practicaTema2</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript" src="practicaTEma2.js"></script>
+    <script type="text/javascript" src="practicaTema2.js"></script>
 </head>
 <body>
     <div class="areaTest">
@@ -14,14 +14,22 @@
         </p>
         <form action="/DesarrolloWebEnCliente/practicaTema2/index.html">
             <br><br><element>1) En Andalucía hace mucho calor en verano.</element><br>
-                <button type="button" onCLick="">Verdadero</button>
-                <button type="button" onCLick="">Falso</button>
+                <button type="button" id="btnVerd1" onCLick="ProcessResponse('btnVerd1', 'btnFalso1');">Verdadero</button>
+                <button type="button" id="btnFalso1" onCLick="ProcessResponse('btnVerd1', 'btnFalso1')">Falso</button>
             <br><br><element>2) El Barça tiene más Copas que el Real Madrid.</element><br>
-                <button type="button" onCLick="">Verdadero</button>
-                <button type="button" onCLick="">Falso</button>
+                <button type="button" id="btnVerd2" onCLick="ProcessResponse('btnVerd2', 'btnFalso2')">Verdadero</button>
+                <button type="button" id="btnFalso2" onCLick="ProcessResponse('btnVerd2', 'btnFalso2')">Falso</button>
             <br><br><element>3) Este ejercicio está hecho usando JavaScript</element><br>
-                <button type="button" onCLick="">Verdadero</button>
-                <button type="button" onCLick="">Falso</button>
+                <button type="button" id="btnVerd3" onCLick="ProcessResponse('btnVerd3', 'btnFalso3')">Verdadero</button>
+                <button type="button" id="btnFalso3" onCLick="ProcessResponse('btnVerd3', 'btnFalso3')">Falso</button>
+            <br>
+            <br>
+
+            <button type="submit" onClick="checkResponses()">Enviar</button>
+            <button type="" onClick="resetResponses()">Reiniciar</button>
+
+            <br>
+            
 
         </form>
         
