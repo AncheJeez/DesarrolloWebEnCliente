@@ -14,12 +14,16 @@ function montarSopaLetras(){
     usarLasDimensiones();
     console.log(filas);
     console.log(columnas);
-    if(filas != null || columnas != null){
+    if(filas != null && columnas != null){
         for(var i = 0;i < filas; i++){
+            var fila = document.createElement("tr");
             for(var j = 0; i < columnas; j++){
-                sopaLetras.append('<td>'+i+'</td>');
+                var celda = document.createElement("td");
+                celda.textContent = i + "," + j;
+                fila.appendChild(celda);
                 console.log("B");
             }
+            sopaLetras.appendChild(fila);
         }
     }else{
         alert("Introduzca las dimensiones y numeros de palabras para la sopa de letras.");
