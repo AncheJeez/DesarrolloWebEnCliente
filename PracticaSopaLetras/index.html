@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<html lang="es">
+<head>
+    <title>practicaTema2</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="sopaLetraJavaScript.js"></script>
+</head>
+<body>
+    Introduzca las dimensiones de la sopa de letra: 
+    <br>
+    <input type="number" id="filas" value="10" required> x <input type="number" id="columnas" value="10" required>
+    <br>
+    Introduzca el número de palabras a insertar:
+    <br>
+    <input type="number" id="numPalabras" value="10" required>
+    <br><br>
+    <button type="submit" onClick="montarSopaLetras()">Cargar tablero</button>
+    <br><br>
+    <table id="sopaLetras">
+        <tr><td>No hay objetos en la tabla</td></tr>
+    </table>
+</body>
+</html>
