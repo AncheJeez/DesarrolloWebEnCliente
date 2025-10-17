@@ -20,10 +20,10 @@
     <!-- <table id="sopaLetras">
         <tr><td>No hay objetos en la tabla</td></tr>
     </table> -->
-    <div class="hacerDesaparecer">
+    <div class="divMontarSopa">
 
         Posicion Fila: <input type="number" id="pedirFila"><br>
-        Posicion Columna: <input type="number" id="pedirFila"><br>
+        Posicion Columna: <input type="number" id="pedirColumna"><br>
         Palabra a introducir: <input id="pedirPalabra"><br>
         <div>
             <input type="radio" id="horizontal" name="radioPosicion"><label for="radioOpt1">Horizontal</label><br>
@@ -31,7 +31,12 @@
             <input type="radio" id="verticalAbajo" name="radioPosicion"><label for="radioOpt3">Vertical Abajo</label><br>
         </div>
         <button type="submit" onclick="introducirPalabra()">Añadir palabra</button>
-        <button type="submit" onclick="empezarJuego()">Empezar juego</button>
+        <button type="submit" onclick="empezarJuego()">Empezar juego</button><br>
+        <button id="btnMostarRespuestas" type="submit" onclick="mostrarRespuestas()">Mostar respuestas</button>
+    </div>
+
+    <div class="divJugando">
+        
     </div>
 </body>
 </html>

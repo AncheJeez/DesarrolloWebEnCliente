@@ -3,6 +3,16 @@ table, th, td {
   margin: 5px;
 }
 
-.hacerDesaparecer{
+.divMontarSopa{
   display: none;
+}
+
+.letra-view {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #aaa;
+  background-color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
 }

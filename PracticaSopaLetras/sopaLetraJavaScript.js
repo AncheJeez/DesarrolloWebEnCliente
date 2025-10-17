@@ -5,6 +5,7 @@ var estadoTablero = false;
 var arraySopaLetras = [];
 
 var palabrasRespuesta = [];
+let copiaOriginal = [];
 
 function usarLasDimensiones(){
     filas = document.getElementById("filas").value;
@@ -15,31 +16,26 @@ function usarLasDimensiones(){
 let sopaLetras = document.getElementById("sopaLetras");
 var tableSopa = document.createElement('table');
 
-var pedirFila = document.createElement('input');
-var pedirColumna = document.createElement('input');
-var pedirPalabra = document.createElement('input');
-var buttonPutWord = document.createElement('button');
-var buttonStartGame = document.createElement('button');
-var divRadioButtons = document.createElement('div');
-
-
 function cargarTablero(){
-    const bloque = document.getElementsByClassName("hacerDesaparecer")[0];
+    const bloque = document.getElementsByClassName("divMontarSopa")[0];
     if(!estadoTablero){
         montarSopaLetras();
         document.getElementById("cargarTablero").textContent = "Resetear tablero";
         bloque.style.display = "block";
         estadoTablero = true;
     }else{
+        tableSopa.innerHTML = "";
+        document.getElementById("cargarTablero").textContent = "Cargar tablero  ";
         bloque.style.display = "none";
         estadoTablero = false;
     }
 }
 
 function montarSopaLetras(){
-    tableSopa.innerHTML = "";
     arraySopaLetras = [];
-    if (divRadioButtons) divRadioButtons.innerHTML = "";
+    copiaOriginal = [];
+    tableSopa.innerHTML = "";
+    // if (divRadioButtons) divRadioButtons.innerHTML = "";
     usarLasDimensiones();
     if(filas != "" && columnas != ""){
         for(var i = 0;i < filas; i++){
@@ -51,14 +47,12 @@ function montarSopaLetras(){
                 newArrayFila.push(i + "," + j);
                 // newArrayFila.push("?")
                 celda.textContent = newArrayFila[j];
+                celda.classList.add("letra-view");
                 fila.appendChild(celda);
             }
-            // sopaLetras.appendChild(fila);
             tableSopa.appendChild(fila);
         }
             document.body.appendChild(tableSopa);
-            // cargarBotonesSopa();
-            // cargarBotonesInicio();
     }else{
         alert("Introduzca las dimensiones y numeros de palabras para la sopa de letras.");
     }
@@ -68,114 +62,60 @@ function actualizarSopaLetras(){
     for(var i = 0;i < filas; i++){
         for(var j = 0; j < columnas; j++){
             var celda = tableSopa.rows[i].cells[j];
-            celda.textContent = arraySopaLetras[i][j];
+            celda.textContent = arraySopaLetras[i][j].toUpperCase();
         }
     }
-}
-
-function cargarBotonesInicio(){
-    pedirFila.setAttribute("type","number");
-    pedirFila.setAttribute("id","pedirFila");
-    pedirColumna.setAttribute("type","number");
-    pedirColumna.setAttribute("id","pedirColumna");
-    pedirPalabra.setAttribute("id","pedirPalabra");
-    
-    var groupName = 'radioPosicion';
-    //radio horizontal
-    var horizontalOpt = document.createElement("input");
-    horizontalOpt.setAttribute("type","radio");
-    horizontalOpt.setAttribute("id","horizontal");
-    horizontalOpt.setAttribute("name", groupName);
-    divRadioButtons.appendChild(horizontalOpt);
-    var horizontalLabel = document.createElement("label");
-    horizontalLabel.setAttribute("for","radioOpt1");
-    horizontalLabel.innerHTML="Horizontal";
-    divRadioButtons.appendChild(horizontalLabel);
-
-    divRadioButtons.appendChild(document.createElement("br"));
-
-    //radio vertical arriba
-    var verticalArribaOpt = document.createElement("input");
-    verticalArribaOpt.setAttribute("type","radio");
-    verticalArribaOpt.setAttribute("id","verticalArriba");
-    verticalArribaOpt.setAttribute("name", groupName);
-    divRadioButtons.appendChild(verticalArribaOpt);
-    var verticalArribaLabel = document.createElement("label");
-    verticalArribaLabel.setAttribute("for","radioOpt2");
-    verticalArribaLabel.innerHTML="Vertical Arriba";
-    divRadioButtons.appendChild(verticalArribaLabel);
-
-    divRadioButtons.appendChild(document.createElement("br"));
-
-    //radio vertical abajo
-    var verticalAbajoOpt = document.createElement("input");
-    verticalAbajoOpt.setAttribute("type","radio");
-    verticalAbajoOpt.setAttribute("id","verticalAbajo");
-    verticalAbajoOpt.setAttribute("name", groupName);
-    divRadioButtons.appendChild(verticalAbajoOpt);
-    var verticalAbajoLabel = document.createElement("label");
-    verticalAbajoLabel.setAttribute("for","radioOpt3");
-    verticalAbajoLabel.innerHTML="Vertical Abajo";
-    divRadioButtons.appendChild(verticalAbajoLabel);
-    
-    buttonPutWord.textContent = "Añadir palabra";
-    buttonPutWord.setAttribute("type","submit");
-    buttonPutWord.setAttribute("onCLick","introducirPalabra()");
-
-    buttonStartGame.textContent = "Empezar juego";
-    buttonStartGame.setAttribute("type","submit");
-    buttonStartGame.setAttribute("onClick","empezarJuego()");
-}
-
-function cargarBotonesSopa(){
-    document.body.appendChild(tableSopa);
-
-    document.body.appendChild(document.createElement('br'));
-
-    var divPedirFila = document.createElement('div');
-    divPedirFila.innerHTML = "Posicion Fila: ";
-    document.body.appendChild(divPedirFila);
-    document.body.appendChild(pedirFila);
-
-    document.body.appendChild(document.createElement('br'));
-
-    var divPedirColumna = document.createElement('div');
-    divPedirColumna.innerHTML = "Posicion Columna: ";
-    document.body.appendChild(divPedirColumna);
-    document.body.appendChild(pedirColumna);
-
-    document.body.appendChild(document.createElement('br'));
-
-    var divPedirPalabra = document.createElement('div');
-    divPedirPalabra.innerHTML = "Palabra a introducir: ";
-    document.body.appendChild(divPedirPalabra);
-    document.body.appendChild(pedirPalabra);
-
-    document.body.appendChild(document.createElement('br'));
-
-    document.body.appendChild(divRadioButtons);
-
-    document.body.appendChild(buttonPutWord);
-
-    document.body.appendChild(buttonStartGame);
 }
 
 function introducirPalabra(){
 
     var filaDada = document.getElementById("pedirFila").value;
     var columnaDada = document.getElementById("pedirColumna").value;
+    var palabra = document.getElementById("pedirPalabra").value;
 
     if(filaDada != "" && columnaDada != "" && document.getElementById("pedirPalabra") != ""){
 
         if(filaDada <= parseInt(filas) && columnaDada <= parseInt(columnas)){
             if(filaDada >=0 && columnaDada >=0){
                 // Aqui añadimos la palabra introducida a la lista de respuestas
-                palabrasRespuesta.push(document.getElementById("pedirPalabra").value);
-                var cadena = (document.getElementById("pedirPalabra").value).split('');
+                // palabrasRespuesta.push(document.getElementById("pedirPalabra").value);
+                // var cadena = (document.getElementById("pedirPalabra").value).split('');
+                var cadena = palabra.split('');
 
                 // aqui asignamos la cadena dada a un valor en el array de arrays
                 const posicion = document.querySelector('input[name="radioPosicion"]:checked')?.id;
-                console.log(posicion);
+                
+                let puedeInsertar = true;
+
+                for (let k = 0; k < cadena.length; k++) {
+                    let fila = filaDada;
+                    let col = columnaDada;
+
+                    switch(posicion){
+                        case 'horizontal':
+                            col = columnaDada + k;
+                            break;
+                        // case 'verticalArriba':
+                        //     fila = filaDada - k;
+                        //     break;
+                        case 'verticalAbajo':
+                            fila = filaDada + k;
+                            break;
+                    }
+
+                    // Si ya hay letra distinta a la coma no se puede poner
+                    if (arraySopaLetras[fila][col] && !arraySopaLetras[fila][col].includes(",")) {
+                        puedeInsertar = false;
+                        console.log("Se pone encima de otra palabra")
+                        break;
+                    }
+                }
+
+                if (!puedeInsertar) {
+                    alert("No se puede colocar la palabra en esa posición, ya hay letras ocupadas o se sale de la sopa.");
+                    return;
+                }
+                palabrasRespuesta.push(palabra);
 
                 switch(posicion){
                     case 'horizontal':
@@ -189,8 +129,6 @@ function introducirPalabra(){
                         break;
                 }
                 actualizarSopaLetras();
-
-                console.log("valores "+document.getElementById("pedirFila").value+" "+document.getElementById("pedirColumna").value);
             }else{
                 alert("No introduzca números menores que 0.");
             }
@@ -236,9 +174,57 @@ function verticalAbajo(cadena, filaDada, columnaDada){
     }
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function empezarJuego(){
     if(palabrasRespuesta.length > 0){
+        const arrayLetras = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"];
+        //hacemos una copia del original para poder comprobar las respuestas luego
+        for (let a = 0; a < filas; a++) {
+            // los tres puntos hace que se haga una copia real y no que haga referencia
+            copiaOriginal.push([...arraySopaLetras[a]]);
+        }
 
+        for(var i = 0;i < filas; i++){
+            for(var j = 0; j < columnas; j++){
+                // si contiene coma en el array, lo sustituye por una letra random
+                if(arraySopaLetras[i][j].includes(",")){
+                    arraySopaLetras[i][j] = arrayLetras[getRandomInt(26)];
+                }
+                //sustituimos 
+                var celda = tableSopa.rows[i].cells[j];
+                celda.textContent = arraySopaLetras[i][j].toUpperCase();
+
+            }
+        }
+    }else{
+        alert("No ha introducido usted ninguna palabra en la sopa de letras");
+    }
+}
+
+function mostrarRespuestas() {
+    if(palabrasRespuesta.length > 0){
+        for (let i = 0; i < filas; i++) {
+            for (let j = 0; j < columnas; j++) {
+                const celda = tableSopa.rows[i].cells[j];
+                const letraOriginal = copiaOriginal[i][j];
+
+                if (letraOriginal.includes(",")) {
+                    // letra de relleno → rojo
+                    celda.style.backgroundColor = "red";
+                    celda.style.color = "white";
+                    // Opcional: mostrar la letra real que estaba puesta al azar
+                    // celda.textContent = arraySopaLetras[i][j].toUpperCase();
+                } else {
+                    // letra de palabra → verde
+                    celda.style.backgroundColor = "green";
+                    celda.style.color = "white";
+                    celda.textContent = letraOriginal.toUpperCase();
+                }
+            }
+        }
     }else{
         alert("No ha introducido usted ninguna palabra en la sopa de letras");
     }
