@@ -2,3 +2,7 @@ table, th, td {
   border: 1px solid;
   margin: 5px;
 }
+
+.hacerDesaparecer{
+  display: none;
+}

@@ -1,7 +1,10 @@
 var filas;
 var columnas;
+var estadoTablero = false;
 
 var arraySopaLetras = [];
+
+var palabrasRespuesta = [];
 
 function usarLasDimensiones(){
     filas = document.getElementById("filas").value;
@@ -16,8 +19,22 @@ var pedirFila = document.createElement('input');
 var pedirColumna = document.createElement('input');
 var pedirPalabra = document.createElement('input');
 var buttonPutWord = document.createElement('button');
+var buttonStartGame = document.createElement('button');
 var divRadioButtons = document.createElement('div');
 
+
+function cargarTablero(){
+    const bloque = document.getElementsByClassName("hacerDesaparecer")[0];
+    if(!estadoTablero){
+        montarSopaLetras();
+        document.getElementById("cargarTablero").textContent = "Resetear tablero";
+        bloque.style.display = "block";
+        estadoTablero = true;
+    }else{
+        bloque.style.display = "none";
+        estadoTablero = false;
+    }
+}
 
 function montarSopaLetras(){
     tableSopa.innerHTML = "";
@@ -39,8 +56,9 @@ function montarSopaLetras(){
             // sopaLetras.appendChild(fila);
             tableSopa.appendChild(fila);
         }
-            cargarBotonesSopa();
-            cargarBotonesInicio();
+            document.body.appendChild(tableSopa);
+            // cargarBotonesSopa();
+            // cargarBotonesInicio();
     }else{
         alert("Introduzca las dimensiones y numeros de palabras para la sopa de letras.");
     }
@@ -61,9 +79,6 @@ function cargarBotonesInicio(){
     pedirColumna.setAttribute("type","number");
     pedirColumna.setAttribute("id","pedirColumna");
     pedirPalabra.setAttribute("id","pedirPalabra");
-    buttonPutWord.textContent = "Añadir palabra";
-    buttonPutWord.setAttribute("type","submit");
-    buttonPutWord.setAttribute("onCLick","introducirPalabra()");
     
     var groupName = 'radioPosicion';
     //radio horizontal
@@ -103,6 +118,13 @@ function cargarBotonesInicio(){
     verticalAbajoLabel.innerHTML="Vertical Abajo";
     divRadioButtons.appendChild(verticalAbajoLabel);
     
+    buttonPutWord.textContent = "Añadir palabra";
+    buttonPutWord.setAttribute("type","submit");
+    buttonPutWord.setAttribute("onCLick","introducirPalabra()");
+
+    buttonStartGame.textContent = "Empezar juego";
+    buttonStartGame.setAttribute("type","submit");
+    buttonStartGame.setAttribute("onClick","empezarJuego()");
 }
 
 function cargarBotonesSopa(){
@@ -134,6 +156,8 @@ function cargarBotonesSopa(){
     document.body.appendChild(divRadioButtons);
 
     document.body.appendChild(buttonPutWord);
+
+    document.body.appendChild(buttonStartGame);
 }
 
 function introducirPalabra(){
@@ -142,9 +166,11 @@ function introducirPalabra(){
     var columnaDada = document.getElementById("pedirColumna").value;
 
     if(filaDada != "" && columnaDada != "" && document.getElementById("pedirPalabra") != ""){
+
         if(filaDada <= parseInt(filas) && columnaDada <= parseInt(columnas)){
             if(filaDada >=0 && columnaDada >=0){
-                
+                // Aqui añadimos la palabra introducida a la lista de respuestas
+                palabrasRespuesta.push(document.getElementById("pedirPalabra").value);
                 var cadena = (document.getElementById("pedirPalabra").value).split('');
 
                 // aqui asignamos la cadena dada a un valor en el array de arrays
@@ -207,5 +233,13 @@ function verticalAbajo(cadena, filaDada, columnaDada){
     for(var i = filaDada; i < cadena.length+parseInt(columnaDada); i++){
         arraySopaLetras[i][parseInt(columnaDada)] = cadena[j];
         j++;
+    }
+}
+
+function empezarJuego(){
+    if(palabrasRespuesta.length > 0){
+
+    }else{
+        alert("No ha introducido usted ninguna palabra en la sopa de letras");
     }
 }
