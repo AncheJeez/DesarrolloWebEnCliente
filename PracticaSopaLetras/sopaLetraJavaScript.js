@@ -31,6 +31,14 @@ function cargarTablero(){
     }
 }
 
+function printArray(){
+    for(var i=0; i < arraySopaLetras.length; i++){
+        for(var j=0;j < arraySopaLetras.length; j++){
+            console.log(arraySopaLetras[i][j]);
+        }
+    }
+}
+
 function montarSopaLetras(){
     arraySopaLetras = [];
     copiaOriginal = [];
@@ -69,11 +77,11 @@ function actualizarSopaLetras(){
 
 function introducirPalabra(){
 
-    var filaDada = document.getElementById("pedirFila").value;
-    var columnaDada = document.getElementById("pedirColumna").value;
+    var filaDada = parseInt(document.getElementById("pedirFila").value);
+    var columnaDada = parseInt(document.getElementById("pedirColumna").value);
     var palabra = document.getElementById("pedirPalabra").value;
 
-    if(filaDada != "" && columnaDada != "" && document.getElementById("pedirPalabra") != ""){
+    if (!isNaN(filaDada) && !isNaN(columnaDada) && palabra !== "") {
 
         if(filaDada <= parseInt(filas) && columnaDada <= parseInt(columnas)){
             if(filaDada >=0 && columnaDada >=0){
@@ -82,8 +90,8 @@ function introducirPalabra(){
                 // var cadena = (document.getElementById("pedirPalabra").value).split('');
                 var cadena = palabra.split('');
 
-                // aqui asignamos la cadena dada a un valor en el array de arrays
                 const posicion = document.querySelector('input[name="radioPosicion"]:checked')?.id;
+                console.log(posicion);
                 
                 let puedeInsertar = true;
 
@@ -95,16 +103,23 @@ function introducirPalabra(){
                         case 'horizontal':
                             col = columnaDada + k;
                             break;
-                        // case 'verticalArriba':
-                        //     fila = filaDada - k;
-                        //     break;
+                        case 'verticalArriba':
+                            fila = filaDada - k;
+                            break;
                         case 'verticalAbajo':
                             fila = filaDada + k;
                             break;
                     }
 
+                    if (fila < 0 || fila >= filas || col < 0 || col >= columnas) {
+                        puedeInsertar = false;
+                        break;
+                    }
+
+
                     // Si ya hay letra distinta a la coma no se puede poner
-                    if (arraySopaLetras[fila][col] && !arraySopaLetras[fila][col].includes(",")) {
+                    // if (arraySopaLetras[fila][col] && !arraySopaLetras[fila][col].match(",")) {
+                    if (arraySopaLetras[fila] && arraySopaLetras[fila][col] && !arraySopaLetras[fila][col].includes(",")) {
                         puedeInsertar = false;
                         console.log("Se pone encima de otra palabra")
                         break;
@@ -122,7 +137,7 @@ function introducirPalabra(){
                         horizontal(cadena, filaDada, columnaDada);
                         break;
                     case 'verticalArriba':
-                        veticalArriba(cadena, filaDada, columnaDada);
+                        verticalArriba(cadena, filaDada, columnaDada);
                         break;
                     case 'verticalAbajo':
                         verticalAbajo(cadena, filaDada, columnaDada);
@@ -141,6 +156,7 @@ function introducirPalabra(){
 }
 
 function horizontal(cadena, filaDada, columnaDada){
+    printArray();
     if (parseInt(columnaDada) + (cadena.length - 1) > columnas-1) {
         alert("La palabra no cabe hacia a la derecha horizontalemnte desde esa posición");
         return;
@@ -152,7 +168,8 @@ function horizontal(cadena, filaDada, columnaDada){
     }
 }
 
-function veticalArriba(cadena, filaDada, columnaDada){
+function verticalArriba(cadena, filaDada, columnaDada){
+    printArray();
     if (parseInt(filaDada) - (cadena.length - 1) < 0) {
         alert("La palabra no cabe hacia arriba desde esa posición");
         return;
@@ -163,6 +180,7 @@ function veticalArriba(cadena, filaDada, columnaDada){
 }
 
 function verticalAbajo(cadena, filaDada, columnaDada){
+    printArray();
     if (parseInt(filaDada) + (cadena.length - 1) > filas-1) {
         alert("La palabra no cabe hacia abajo desde esa posición");
         return;

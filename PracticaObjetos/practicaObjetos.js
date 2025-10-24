@@ -44,6 +44,10 @@ class Producto extends IProducto{
         super(nombre, precio, marca)
     }
 
+    get getPrecio(){
+        return this._precio;
+    }
+
     set setPrecio(new_precio){
         if(new_precio >= 0)
             this._precio = new_precio;
@@ -53,13 +57,13 @@ class Producto extends IProducto{
 
     // el toString
     mostrarInformacion(){
-        console.log(this.getMarca);
-        console.log(this.getMarca);
-        console.log(this._precio);
+        console.log(this.getMarca());
+        console.log(this.getMarca());
+        console.log(this.getPrecio());
     }
 
     aplicarDescuento(porcentaje){
-        var nuevo_precio = this.getPrecio() - ((this.getPrecio) * porcentaje / 100);
+        var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * porcentaje / 100);
         this.setPrecio(nuevo_precio);
     }
 
@@ -119,9 +123,9 @@ class Electrodomestico extends Producto{
     aplicarDescuento(porcentaje){
         if(this.getPrecio >= 15){
             // aplicamos un 10% de descuento adicional
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio) * (porcentaje + 10) / 100);
+            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * (porcentaje + 10) / 100);
         }else{
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio) * porcentaje / 100);
+            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * porcentaje / 100);
         }
         this.setPrecio(nuevo_precio);
     }
@@ -154,12 +158,12 @@ class EquipoInformatico extends Producto{
     aplicarDescuento(porcentaje){
         if(this.getProcesador == 'AMD Ryzen'){
             // aplicamos un 20% de descuento adicional
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio) * (porcentaje + 20) / 100);
+            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * (porcentaje + 20) / 100);
         }if(this.getMarca == 'Balay'){
             // aplicamos un 25% de descuento adicional
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio) * (porcentaje + 25) / 100);
+            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * (porcentaje + 25) / 100);
         }else{
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio) * porcentaje / 100);
+            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * porcentaje / 100);
         }
         this.setPrecio(nuevo_precio);
     }
@@ -168,5 +172,62 @@ class EquipoInformatico extends Producto{
 
 
 class Inventario{
+
+    constructor(){
+        this._listaProductos = []
+    }
+
+    get getProductos(){
+        return this._listaProductos;
+    }
+
+    set setProductos(new_productos){
+        if(new_productos instanceof Producto){
+            this._listaProductos = new_productos;
+        }else{
+            console.log("No se ha podido establecer nuevo Inventario");
+        }
+    }
     
+    agregarProducto(producto){
+        this.getProductos().push(producto);
+    }
+
+    // no hace falta devolver nada, pero por si se quiere comprobar si se ha borrado o no el valor
+    eliminarProducto(nombreProducto){
+        var listado = this.getProductos();
+        for(var i = 0; i< this.getProductos().length;i++){
+            if(listado[i].getNombre() === nombreProducto){
+                deletethis.getProductos[i];
+                return true;
+            }
+        }
+        return false;
+    }
+
+    buscarProducto(nombreProducto){
+        var listado = this.getProductos();
+        for(var i = 0; i< this.getProductos().length;i++){
+            if(listado[i].getNombre() === nombreProducto){
+                return listado[i];
+            }
+        }
+        return null;
+    }
+    
+    mostrarProductos(){
+        for(var i = 0; i< this.getProductos().length;i++){
+            console.log(listado[i]);
+        }
+    }
+
+    valorTotal(){
+        var suma = 0;
+        var listado = this.getProductos();
+        for(var i = 0; i< this.getProductos().length;i++){
+            suma = suma + listado[i].getPrecio();
+        }
+    }
 }
+
+
