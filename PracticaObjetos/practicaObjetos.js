@@ -57,9 +57,9 @@ class Producto extends IProducto{
 
     // el toString
     mostrarInformacion(){
-        console.log(this.getMarca());
-        console.log(this.getMarca());
+        console.log(this.getNombre());
         console.log(this.getPrecio());
+        console.log(this.getMarca());
     }
 
     aplicarDescuento(porcentaje){
