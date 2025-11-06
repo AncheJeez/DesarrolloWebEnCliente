@@ -57,20 +57,23 @@ class Producto extends IProducto{
 
     // el toString
     mostrarInformacion(){
-        console.log(this.getNombre());
-        console.log(this.getPrecio());
-        console.log(this.getMarca());
+        console.log(this.getNombre);
+        console.log(this.getPrecio);
+        console.log(this.getMarca);
     }
 
     aplicarDescuento(porcentaje){
-        var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * porcentaje / 100);
-        this.setPrecio(nuevo_precio);
+        var nuevo_precio = this.getPrecio - ((this.getPrecio) * porcentaje / 100);
+        this.setPrecio = nuevo_precio;
     }
 
     //https://4geeks.com/es/how-to/metodo-reduce-javascript
-    precioPromedio(arrayDeProductos){
-        var sumaTotal = arrayDeProductos.reduce((total, numero) => {
-            return total + numero;
+    static precioPromedio(arrayDeProductos){
+        if (!Array.isArray(arrayDeProductos)) {
+            throw new Error("El parámetro debe ser un array de productos");
+        }
+        const sumaTotal = arrayDeProductos.reduce((total, producto) => {
+            return total + producto.getPrecio;
         }, 0);
         //devolvemos el promedio
         return sumaTotal / (arrayDeProductos.length + 1);
@@ -87,7 +90,7 @@ class Electrodomestico extends Producto{
     constructor(nombre, precio, marca, consumoEnergetico, garantia){
         super(nombre, precio, marca)
         this._consumoEnergetico = consumoEnergetico;
-        if(checkValidGarantia(garantia))
+        if(this.checkValidGarantia(garantia))
             this._garantia = garantia;
         else
             this._garantia = 'C';
@@ -123,11 +126,11 @@ class Electrodomestico extends Producto{
     aplicarDescuento(porcentaje){
         if(this.getPrecio >= 15){
             // aplicamos un 10% de descuento adicional
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * (porcentaje + 10) / 100);
+            var nuevo_precio = this.getPrecio - ((this.getPrecio) * (porcentaje + 10) / 100);
         }else{
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * porcentaje / 100);
+            var nuevo_precio = this.getPrecio - ((this.getPrecio) * porcentaje / 100);
         }
-        this.setPrecio(nuevo_precio);
+        this.setPrecio = nuevo_precio;
     }
 }
 
@@ -158,14 +161,14 @@ class EquipoInformatico extends Producto{
     aplicarDescuento(porcentaje){
         if(this.getProcesador == 'AMD Ryzen'){
             // aplicamos un 20% de descuento adicional
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * (porcentaje + 20) / 100);
+            var nuevo_precio = this.getPrecio - ((this.getPrecio) * (porcentaje + 20) / 100);
         }if(this.getMarca == 'Balay'){
             // aplicamos un 25% de descuento adicional
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * (porcentaje + 25) / 100);
+            var nuevo_precio = this.getPrecio - ((this.getPrecio) * (porcentaje + 25) / 100);
         }else{
-            var nuevo_precio = this.getPrecio() - ((this.getPrecio()) * porcentaje / 100);
+            var nuevo_precio = this.getPrecio - ((this.getPrecio) * porcentaje / 100);
         }
-        this.setPrecio(nuevo_precio);
+        this.setPrecio = nuevo_precio;
     }
 
 }
@@ -173,8 +176,8 @@ class EquipoInformatico extends Producto{
 
 class Inventario{
 
-    constructor(){
-        this._listaProductos = []
+    constructor(listaProductos = []){
+        this._listaProductos = listaProductos;
     }
 
     get getProductos(){
@@ -182,23 +185,23 @@ class Inventario{
     }
 
     set setProductos(new_productos){
-        if(new_productos instanceof Producto){
-            this._listaProductos = new_productos;
-        }else{
-            console.log("No se ha podido establecer nuevo Inventario");
+        if (Array.isArray(nuevosProductos)) {
+            this._listaProductos = nuevosProductos;
+        } else {
+            console.log("Debe asignarse un array de productos.");
         }
     }
     
     agregarProducto(producto){
-        this.getProductos().push(producto);
+        this.getProductos.push(producto);
     }
 
     // no hace falta devolver nada, pero por si se quiere comprobar si se ha borrado o no el valor
     eliminarProducto(nombreProducto){
-        var listado = this.getProductos();
-        for(var i = 0; i< this.getProductos().length;i++){
-            if(listado[i].getNombre() === nombreProducto){
-                deletethis.getProductos[i];
+        var listado = this.getProductos;
+        for(var i = 0; i< this.getProductos.length;i++){
+            if(listado[i].getNombre === nombreProducto){
+                this.getProductos.splice(i, 1);
                 return true;
             }
         }
@@ -206,28 +209,79 @@ class Inventario{
     }
 
     buscarProducto(nombreProducto){
-        var listado = this.getProductos();
-        for(var i = 0; i< this.getProductos().length;i++){
-            if(listado[i].getNombre() === nombreProducto){
-                return listado[i];
+        var listado = this.getProductos;
+        for(var i = 0; i< listado.length;i++){
+            if(listado[i].getNombre.toLowerCase().trim() === nombreProducto.toLowerCase().trim()){
+                return  listado[i];
             }
         }
         return null;
     }
     
     mostrarProductos(){
-        for(var i = 0; i< this.getProductos().length;i++){
+        const listado = this.getProductos;
+        for(var i = 0; i< this.getProductos.length;i++){
             console.log(listado[i]);
         }
     }
 
     valorTotal(){
         var suma = 0;
-        var listado = this.getProductos();
-        for(var i = 0; i< this.getProductos().length;i++){
-            suma = suma + listado[i].getPrecio();
+        var listado = this.getProductos;
+        for(var i = 0; i< this.getProductos.length;i++){
+            suma = suma + listado[i].getPrecio;
         }
+        return suma;
     }
 }
 
 
+//BATERIA DE PRUEBAS
+
+//objeto producto
+const camiseta = new Producto("All Stars",15.5,"Adidas");
+
+// console.log("Imprimimos el producto creado: "+camiseta.getNombre+" "+camiseta.getPrecio+" "+camiseta.getMarca);
+camiseta.mostrarInformacion();
+
+//cambiamos el precio
+camiseta.setPrecio = 20.0;
+console.log("Nuevo precio: "+camiseta.getPrecio+", y ahora enseñamos error cuando es negativo: ");
+
+// camiseta.setPrecio = -5.0;
+
+camiseta.aplicarDescuento(20);
+
+console.log("Nuevo precio despues del descuento: "+camiseta.getPrecio);
+
+const lavadora = new Electrodomestico("SuperRapidoX", 800.0, "Lavadoras Pepe", 200.5, 2);
+const portatil = new EquipoInformatico("Future IT", 500.0, "EINSTEIN", 130, 3);
+
+const listaProductos = [
+    new Producto("Camiseta", 15.5, "Adidas"),
+    new Producto("Pantalón", 25.0, "Nike"),
+    new Producto("Zapatillas", 50.0, "Puma")
+];
+
+console.log("Promedio del listado de Productos"+Producto.precioPromedio(listaProductos));
+
+lavadora.aplicarDescuento(30);
+console.log("Aplicamos descuento a un electrodomestico: "+lavadora.getPrecio);
+
+portatil.aplicarDescuento(25);
+console.log("Aplicamos descuento a un equipo informatico: "+portatil.getPrecio);
+
+const listadoInventario = new Inventario(listaProductos);
+
+const prueba = new Producto("test", 10.0, "test");
+
+listadoInventario.agregarProducto(prueba);
+listadoInventario.mostrarProductos();
+console.log("Ahora eliminamos el objeto agregado")
+listadoInventario.eliminarProducto("test");
+listadoInventario.mostrarProductos();
+
+console.log("Buscamos el producto Zapatillas:");
+listadoInventario.buscarProducto("Zapatillas").mostrarInformacion();
+
+console.log("Valor total de los productos: "+listadoInventario.valorTotal());
