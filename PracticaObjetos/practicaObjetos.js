@@ -1,8 +1,7 @@
 class IProducto{
     constructor(nombre, precio, marca){
-        if(isThisInt())
         this._nombre = nombre;
-        this._precio = parseToDouble(precio);
+        this._precio = this.parseToFloat(precio);
         this._marca = marca;
     }
 
@@ -39,9 +38,9 @@ class IProducto{
         throw new Error("Completar método mostrarInformacion()");
     }
 
-    static parseToDouble(variable){
+    parseToFloat(variable){
         try{
-            return parseDouble(variable);
+            return parseFloat(variable);
         }catch(error){
             console.error(error);
             return 1;
@@ -99,9 +98,9 @@ class Electrodomestico extends Producto{
 
     constructor(nombre, precio, marca, consumoEnergetico, garantia){
         super(nombre, precio, marca)
-        this._garantia = parseToDouble(garantia);
-        if(this.checkValidConsumo(consumo))
-            this._consumoEnergetico = consumo;
+        this._garantia = this.parseToFloat(garantia);
+        if(this.checkValidConsumo(consumoEnergetico))
+            this._consumoEnergetico = consumoEnergetico;
         else
             this._consumoEnergetico = 'C';
         
@@ -125,7 +124,7 @@ class Electrodomestico extends Producto{
 
     checkValidConsumo(consumo){
         var listaConsumo = ['A++','A+','B','C'];
-        for(var o=0;i<listaConsumo.length;i++){
+        for(var i=0;i<listaConsumo.length;i++){
             if(listaConsumo[i] === consumo){
                 return true;
             }
