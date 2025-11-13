@@ -1,7 +1,8 @@
 class IProducto{
     constructor(nombre, precio, marca){
+        if(isThisInt())
         this._nombre = nombre;
-        this._precio = precio;
+        this._precio = parseToDouble(precio);
         this._marca = marca;
     }
 
@@ -36,6 +37,15 @@ class IProducto{
     // esta tiene que devolver un string
     mostrarInformacion(){
         throw new Error("Completar método mostrarInformacion()");
+    }
+
+    static parseToDouble(variable){
+        try{
+            return parseDouble(variable);
+        }catch(error){
+            console.error(error);
+            return 1;
+        }
     }
 }
 
@@ -89,11 +99,11 @@ class Electrodomestico extends Producto{
 
     constructor(nombre, precio, marca, consumoEnergetico, garantia){
         super(nombre, precio, marca)
-        this._consumoEnergetico = consumoEnergetico;
-        if(this.checkValidGarantia(garantia))
-            this._garantia = garantia;
+        this._garantia = parseToDouble(garantia);
+        if(this.checkValidConsumo(consumo))
+            this._consumoEnergetico = consumo;
         else
-            this._garantia = 'C';
+            this._consumoEnergetico = 'C';
         
     }
 
@@ -113,10 +123,10 @@ class Electrodomestico extends Producto{
         this._garantia = new_garantia;
     }
 
-    checkValidGarantia(garantia){
-        var listaGarantia = ['A++','A+','B','C'];
-        for(var i=0;i<listaGarantia.length;i++){
-            if(listaGarantia[i] === garantia){
+    checkValidConsumo(consumo){
+        var listaConsumo = ['A++','A+','B','C'];
+        for(var o=0;i<listaConsumo.length;i++){
+            if(listaConsumo[i] === consumo){
                 return true;
             }
         }
@@ -264,10 +274,10 @@ const listaProductos = [
 ];
 
 console.log("Promedio del listado de Productos"+Producto.precioPromedio(listaProductos));
-
+debugger;
 lavadora.aplicarDescuento(30);
 console.log("Aplicamos descuento a un electrodomestico: "+lavadora.getPrecio);
-
+debugger;
 portatil.aplicarDescuento(25);
 console.log("Aplicamos descuento a un equipo informatico: "+portatil.getPrecio);
 
