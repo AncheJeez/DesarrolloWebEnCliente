@@ -118,7 +118,7 @@ class Electrodomestico extends Producto{
         return this._garantia;
     }
 
-    set setGarantia(new_garantia){
+    set setGarantia(new_garantia){c
         this._garantia = new_garantia;
     }
 
