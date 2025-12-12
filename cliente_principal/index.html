@@ -15,8 +15,8 @@
             <a href="">Principal</a>
             <a href="">Tienda</a>
             <div class="dropdown">
-                <button class="dropbtn"> Juegos
-                    <i class="fa fa-caret-down"></i>
+                <button class="dropbtn">
+                    Juegos
                 </button>
                 <div class="dropdown-content">
                     <a href="#">Link 1</a>
@@ -25,19 +25,22 @@
                 </div>
             </div>
             <a href="">Administración</a>
-            <object id="profile-button" data="/imagenes/account_circle.svg" type="image/svg+xml">
-                <img src="/imagenes/fallback-error.png" />
-            </object>
-
+            <div id="profile-button" class="clickable">
+                <img src="/imagenes/account_circle.svg" alt="Profile" />
+            </div>
         </div>
     </header>
     <main>
         <div id="sidebar" class="sidebar">
+            <div id="back-button" class="clickable">
+                <img src="/imagenes/arrow_back.svg" alt="Back" />
+            </div>
             texto de prueba
         </div>
     </main>
     <footer>
         Hey esto es el final de la página
     </footer>
+    <script type="text/javascript" src="script.js" defer></script>
 </body>
 </html>
