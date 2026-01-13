@@ -1,5 +1,12 @@
-const listaUsers = [{user: "admin", password: "admin"},{user: "andres", password: "andres"},{user: "testing", password: "testing"}];
-
+// const listaUsers = [{user: "admin", password: "admin"},{user: "andres", password: "andres"},{user: "testing", password: "testing"}];
+if (!localStorage.getItem("users")) {
+    const defaultUsers = [
+        { user: "admin", password: "admin" },
+        { user: "andres", password: "andres" },
+        { user: "testing", password: "testing" }
+    ];
+    localStorage.setItem("users", JSON.stringify(defaultUsers));
+}
 //sidebar
 const sidebar = document.getElementById('sidebar');
 document.getElementById("profile-button").onclick = () => {
@@ -12,31 +19,64 @@ document.getElementById("back-button").onclick = () => {
 //formularip
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    const givenUsername = document.getElementById("usuario").value;
-    const givenPassword = document.getElementById("password").value;
-    var flag = false;
-    for(var i=0, count = listaUsers.length; i< count; i++){
-        console.log("test1");
-        if(listaUsers[i].user == givenUsername && listaUsers[i].password == givenPassword){
-            console.log("test2");
-            localStorage.setItem("user", givenUsername);
-            localStorage.setItem("password", givenPassword);
-            flag = true;
-            alert("Usuario correcto, está guardados los datos localmente");
-            break;
-        }
-    }
-    if(!flag){
-        alert("Usuario o contraseña no existe");
+
+    const username = document.getElementById("usuario").value.trim();
+    const password = document.getElementById("userPassword").value.trim();
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const userFound = users.find(
+        u => u.user === username && u.password === password
+    );
+
+    if (userFound) {
+        localStorage.setItem("loggedUser", username);
+        alert("Login correcto");
+        mostrarUsuario();
+    } else {
+        alert("Usuario o contraseña incorrectos");
     }
 });
 
+document.getElementById("registerForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const newUser = document.getElementById("newUser").value.trim();
+    const newPassword = document.getElementById("newPassword").value.trim();
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.some(u => u.user === newUser)) {
+        alert("El usuario ya existe");
+        return;
+    }
+
+    users.push({ user: newUser, password: newPassword });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Usuario registrado correctamente");
+});
+
+function mostrarUsuario() {
+    const loggedUser = localStorage.getItem("loggedUser");
+
+    if (loggedUser) {
+        document.querySelector(".container-login").style.display = "none";
+        document.getElementById("profile-button").title = loggedUser;
+    }
+}
+
+mostrarUsuario();
+
+
+
 //borrar sesion
 document.getElementById("close-session-button").onclick = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("password");
+    localStorage.removeItem("loggedUser");
+    location.reload();
 }
 //borrar datos almacenados
 document.getElementById("borrar-datos-almacenados-button").onclick = () => {
     localStorage.clear();
+    location.reload();
 }
