@@ -1,14 +1,35 @@
 // const listaUsers = [{user: "admin", password: "admin"},{user: "andres", password: "andres"},{user: "testing", password: "testing"}];
 if (!localStorage.getItem("users")) {
     const defaultUsers = [
-        { user: "admin", password: "admin" },
-        { user: "andres", password: "andres" },
-        { user: "testing", password: "testing" }
+        {
+            user: "admin",
+            password: "admin",
+            email: "admin@mail.com",
+            rol: "administrador",
+            genero: "masculino"
+        },
+        {
+            user: "andres",
+            password: "andres",
+            email: "andres@mail.com",
+            rol: "usuario",
+            genero: "masculino"
+        },
+        {
+            user: "testing",
+            password: "testing",
+            email: "testing@mail.com",
+            rol: "usuario",
+            genero: "otros"
+        }
     ];
     localStorage.setItem("users", JSON.stringify(defaultUsers));
 }
+
 //sidebar
 const sidebar = document.getElementById('sidebar');
+
+var exists_profile_btn = document.getElementById("profile-button");
 document.getElementById("profile-button").onclick = () => {
     sidebar.classList.toggle('active');
 };
@@ -43,6 +64,9 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
 
     const newUser = document.getElementById("newUser").value.trim();
     const newPassword = document.getElementById("newPassword").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const rol = document.getElementById("rol").value;
+    const genero = document.querySelector('input[name="genero"]:checked').value;
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -51,10 +75,19 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
         return;
     }
 
-    users.push({ user: newUser, password: newPassword });
+    const nuevoUsuario = {
+        user: newUser,
+        password: newPassword,
+        email: email,
+        rol: rol,
+        genero: genero
+    };
+
+    users.push(nuevoUsuario);
     localStorage.setItem("users", JSON.stringify(users));
 
     alert("Usuario registrado correctamente");
+    document.getElementById("registerForm").reset();
 });
 
 function mostrarUsuario() {
@@ -67,7 +100,6 @@ function mostrarUsuario() {
 }
 
 mostrarUsuario();
-
 
 
 //borrar sesion

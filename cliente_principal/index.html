@@ -32,7 +32,7 @@
     </header>
     <main>
 
-        <div class="container-login">
+        <div class="container-form">
             <p>Login</p>
             <form id="loginForm" action="" method="post">
                     <label for="usuario">Usuario:</label>
@@ -47,17 +47,44 @@
             </div>
         </div>
 
-        <div class="container-login">
+        <div class="container-form">
             <p>Registro</p>
-            <form id="registerForm">
-                <label for="newUser">Usuario:</label>
-                <input type="text" id="newUser" required>
+                <form id="registerForm">
 
-                <label for="newPassword">Contraseña:</label>
-                <input type="password" id="newPassword" required>
+                    <label for="newUser">Usuario:</label>
+                    <input type="text" id="newUser" required>
 
-                <input type="submit" value="Registrarse">
-            </form>
+                    <label for="newPassword">Contraseña:</label>
+                    <input type="password" id="newPassword" required>
+
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" required>
+
+                    <label for="rol">Rol:</label>
+                    <select id="rol" required>
+                        <option value="">Seleccione un rol</option>
+                        <option value="administrador">Administrador</option>
+                        <option value="usuario">Usuario</option>
+                    </select>
+
+                    <label>Género:</label>
+                    <div>
+                        <label>
+                            <input type="radio" name="genero" value="masculino" required>
+                            Masculino
+                        </label>
+                        <label>
+                            <input type="radio" name="genero" value="femenino">
+                            Femenino
+                        </label>
+                        <label>
+                            <input type="radio" name="genero" value="otros">
+                            Otros
+                        </label>
+                    </div>
+
+                    <input type="submit" value="Registrarse">
+                </form>
         </div>
 
         <div id="sidebar" class="sidebar">
@@ -70,7 +97,8 @@
     </main>
     <footer>
         Hey esto es el final de la página
+        <a href="./pages/contactanos.html">Contáctanos</a>
     </footer>
-    <script type="text/javascript" src="script.js" defer></script>
 </body>
+<script type="text/javascript" src="./scripts/script_index.js" defer></script>
 </html>

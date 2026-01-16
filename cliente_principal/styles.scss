@@ -83,10 +83,10 @@ body{
     main{
         display: flex;
         justify-content: center;
-        .container-login{
+        .container-form{
             background-color: yellow;
             width: 50%;
-            height: 30%;
+            height: 40%;
             border-radius: 20px;
             border: 2px solid black;
             margin: 1em;
@@ -109,7 +109,7 @@ body{
                     margin-bottom: 10px;
                 }
 
-                input[type=text], input[type=password] {
+                input[type=text], input[type=password], input[type=email] {
                     min-width: 45%;
                     margin-bottom: 10px;
                     padding: 10px;
