@@ -1,4 +1,8 @@
-const listaUsers = [{user: "admin", password: "admin"},{user: "andres", password: "andres"},{user: "testing", password: "testing"}];
+const listaUsers = [
+    {user: "admin", password: "admin"},
+    {user: "andres", password: "andres"},
+    {user: "testing", password: "testing"}
+];
 
 //sidebar
 const sidebar = document.getElementById('sidebar');
@@ -8,7 +12,7 @@ document.getElementById("profile-button").onclick = () => {
 
 document.getElementById("back-button").onclick = () => {
     sidebar.classList.toggle('active');
-}
+};
 //formularip
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
