@@ -32,7 +32,7 @@
     </header>
     <main>
 
-        <div class="container-form">
+        <div class="container-form" id="login-container">
             <p>Login</p>
             <form id="loginForm" action="" method="post">
                     <label for="usuario">Usuario:</label>
@@ -43,11 +43,11 @@
                     <input type="submit" value="Logearse">
             </form>
             <div class="registro">
-                Haga click <a href="">aquí</a> para registrarse.
+                Haga click <a href="#" id="show-register">aquí</a> para registrarse.
             </div>
         </div>
 
-        <div class="container-form">
+        <div class="container-form hidden" id="register-container">
             <p>Registro</p>
                 <form id="registerForm">
 
@@ -85,6 +85,9 @@
 
                     <input type="submit" value="Registrarse">
                 </form>
+                <div class="registro">
+                    ¿Ya tienes cuenta? <a href="#" id="show-login">Volver al login</a>
+                </div>
         </div>
 
         <div id="sidebar" class="sidebar">

@@ -9,9 +9,6 @@ body {
   flex-direction: column;
   height: 150vh;
 }
-body main {
-  flex: 1;
-}
 body .container-header {
   background-color: rgb(106, 176, 106);
   text-align: center;
@@ -76,6 +73,7 @@ body .container-nav .clickable:hover {
 }
 body main {
   display: flex;
+  flex: 1;
   justify-content: center;
 }
 body main .container-form {
@@ -154,4 +152,6 @@ body footer {
   padding: 1em;
 }
 
-/*# sourceMappingURL=styles.css.map */
+.hidden {
+  display: none !important;
+}/*# sourceMappingURL=styles.css.map */

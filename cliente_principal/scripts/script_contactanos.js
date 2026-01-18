@@ -1,4 +1,5 @@
 document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
     const nombre = document.getElementById("nombre").value.trim();
     const correo = document.getElementById("email").value.trim();
     const asunto = document.getElementById("asunto").value.trim();

@@ -37,7 +37,7 @@ document.getElementById("profile-button").onclick = () => {
 document.getElementById("back-button").onclick = () => {
     sidebar.classList.toggle('active');
 };
-//formularip
+//formulario login
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -59,8 +59,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     }
 });
 
+//formulario registrarse
 document.getElementById("registerForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault();// si no se pone esto se vuelve a refrescar la página y no me deja hacer pj consolelog
 
     const newUser = document.getElementById("newUser").value.trim();
     const newPassword = document.getElementById("newPassword").value.trim();
@@ -90,11 +91,28 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     document.getElementById("registerForm").reset();
 });
 
+//q aparezca y desaparezca cuando toca
+const loginContainer = document.getElementById("login-container");
+const registerContainer = document.getElementById("register-container");
+
+document.getElementById("show-register").addEventListener("click", (e) => {
+    e.preventDefault();
+    loginContainer.classList.add("hidden");
+    registerContainer.classList.remove("hidden");
+});
+
+document.getElementById("show-login").addEventListener("click", (e) => {
+    e.preventDefault();
+    registerContainer.classList.add("hidden");
+    loginContainer.classList.remove("hidden");
+});
+
 function mostrarUsuario() {
     const loggedUser = localStorage.getItem("loggedUser");
 
     if (loggedUser) {
-        document.querySelector(".container-login").style.display = "none";
+        document.getElementById("login-container").classList.add("hidden");
+        document.getElementById("register-container").classList.add("hidden");
         document.getElementById("profile-button").title = loggedUser;
     }
 }
