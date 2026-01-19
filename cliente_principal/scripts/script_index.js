@@ -1,111 +1,144 @@
-// const listaUsers = [{user: "admin", password: "admin"},{user: "andres", password: "andres"},{user: "testing", password: "testing"}];
-if (!localStorage.getItem("users")) {
-    const defaultUsers = [
-        {
-            user: "admin",
-            password: "admin",
-            email: "admin@mail.com",
-            rol: "administrador",
-            genero: "masculino"
-        },
-        {
-            user: "andres",
-            password: "andres",
-            email: "andres@mail.com",
-            rol: "usuario",
-            genero: "masculino"
-        },
-        {
-            user: "testing",
-            password: "testing",
-            email: "testing@mail.com",
-            rol: "usuario",
-            genero: "otros"
-        }
-    ];
-    localStorage.setItem("users", JSON.stringify(defaultUsers));
-}
+window.onload = iniciar;
 
-//sidebar
-const sidebar = document.getElementById('sidebar');
+function iniciar() {
 
-var exists_profile_btn = document.getElementById("profile-button");
-document.getElementById("profile-button").onclick = () => {
-    sidebar.classList.toggle('active');
-};
+    mostrarUsuario();
 
-document.getElementById("back-button").onclick = () => {
-    sidebar.classList.toggle('active');
-};
-//formulario login
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+    set_up_validated_users();
 
-    const username = document.getElementById("usuario").value.trim();
-    const password = document.getElementById("userPassword").value.trim();
+    //sidebar
+    const sidebar = document.getElementById('sidebar');
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const userFound = users.find(
-        u => u.user === username && u.password === password
-    );
-
-    if (userFound) {
-        localStorage.setItem("loggedUser", username);
-        alert("Login correcto");
-        mostrarUsuario();
-    } else {
-        alert("Usuario o contraseña incorrectos");
-    }
-});
-
-//formulario registrarse
-document.getElementById("registerForm").addEventListener("submit", function (e) {
-    e.preventDefault();// si no se pone esto se vuelve a refrescar la página y no me deja hacer pj consolelog
-
-    const newUser = document.getElementById("newUser").value.trim();
-    const newPassword = document.getElementById("newPassword").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const rol = document.getElementById("rol").value;
-    const genero = document.querySelector('input[name="genero"]:checked').value;
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    if (users.some(u => u.user === newUser)) {
-        alert("El usuario ya existe");
-        return;
-    }
-
-    const nuevoUsuario = {
-        user: newUser,
-        password: newPassword,
-        email: email,
-        rol: rol,
-        genero: genero
+    // var exists_profile_btn = document.getElementById("profile-button");
+    document.getElementById("profile-button").onclick = () => {
+        sidebar.classList.toggle('active');
     };
 
-    users.push(nuevoUsuario);
-    localStorage.setItem("users", JSON.stringify(users));
+    document.getElementById("back-button").onclick = () => {
+        sidebar.classList.toggle('active');
+    };
 
-    alert("Usuario registrado correctamente");
-    document.getElementById("registerForm").reset();
-});
+    //borrar sesion
+    document.getElementById("close-session-button").onclick = () => {
+        localStorage.removeItem("loggedUser");
+        location.reload();
+    }
+    //borrar datos almacenados
+    document.getElementById("borrar-datos-almacenados-button").onclick = () => {
+        localStorage.clear();
+        location.reload();
+    }
 
-//q aparezca y desaparezca cuando toca
-const loginContainer = document.getElementById("login-container");
-const registerContainer = document.getElementById("register-container");
+    //formulario login
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-document.getElementById("show-register").addEventListener("click", (e) => {
-    e.preventDefault();
-    loginContainer.classList.add("hidden");
-    registerContainer.classList.remove("hidden");
-});
+        const username = document.getElementById("usuario").value.trim();
+        const password = document.getElementById("userPassword").value.trim();
 
-document.getElementById("show-login").addEventListener("click", (e) => {
-    e.preventDefault();
-    registerContainer.classList.add("hidden");
-    loginContainer.classList.remove("hidden");
-});
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+
+        const userFound = users.find(
+            u => u.user === username && u.password === password
+        );
+
+        if (userFound) {
+            localStorage.setItem("loggedUser", username);
+            alert("Login correcto");
+            mostrarUsuario();
+        } else {
+            alert("Usuario o contraseña incorrectos");
+        }
+    });
+
+    //formulario registrarse
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+        e.preventDefault();// si no se pone esto se vuelve a refrescar la página y no me deja hacer pj consolelog
+
+        if (!validar(e)) return;
+        const newUser = document.getElementById("newUser").value.trim();
+        const newPassword = document.getElementById("newPassword").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const rol = document.getElementById("rol").value;
+        const genero = document.querySelector('input[name="genero"]:checked').value;
+        const recibirCorreos = document.getElementById("recibirCorreos").checked;
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        if (users.some(u => u.user === newUser)) {
+            alert("El usuario ya existe");
+            return;
+        }
+
+        const nuevoUsuario = {
+            user: newUser,
+            password: newPassword,
+            email: email,
+            rol: rol,
+            genero: genero,
+            recibirCorreos: recibirCorreos
+        };
+
+        users.push(nuevoUsuario);
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("Usuario registrado correctamente");
+        document.getElementById("registerForm").reset();
+
+        //cambiamos a la pantalla de login
+        registerContainer.classList.add("hidden");
+        loginContainer.classList.remove("hidden");
+    });
+
+    //q aparezca y desaparezca cuando toca
+    const loginContainer = document.getElementById("login-container");
+    const registerContainer = document.getElementById("register-container");
+
+    document.getElementById("show-register").addEventListener("click", (e) => {
+        e.preventDefault();
+        loginContainer.classList.add("hidden");
+        registerContainer.classList.remove("hidden");
+    });
+
+    document.getElementById("show-login").addEventListener("click", (e) => {
+        e.preventDefault();
+        registerContainer.classList.add("hidden");
+        loginContainer.classList.remove("hidden");
+    });
+
+}
+
+function set_up_validated_users(){
+    if (!localStorage.getItem("users")) {
+        const defaultUsers = [
+            {
+                user: "admin",
+                password: "admin",
+                email: "admin@mail.com",
+                rol: "administrador",
+                genero: "masculino",
+                "recibirCorreos": true
+            },
+            {
+                user: "andres",
+                password: "andres",
+                email: "andres@mail.com",
+                rol: "usuario",
+                genero: "masculino",
+                "recibirCorreos": true
+            },
+            {
+                user: "testing",
+                password: "testing",
+                email: "testing@mail.com",
+                rol: "usuario",
+                genero: "otros",
+                "recibirCorreos": false
+            }
+        ];
+        localStorage.setItem("users", JSON.stringify(defaultUsers));
+    }
+}
 
 function mostrarUsuario() {
     const loggedUser = localStorage.getItem("loggedUser");
@@ -117,16 +150,110 @@ function mostrarUsuario() {
     }
 }
 
-mostrarUsuario();
+function validar(e) {
+    clear_errores();
+    let valido = true;
 
+    if (!validarNombreUsuario()) valido = false;
+    if (!validarPassword()) valido = false;
+    if (!validarEmail()) valido = false;
+    if (!validarRol()) valido = false;
+    if (!validarGenero()) valido = false;
 
-//borrar sesion
-document.getElementById("close-session-button").onclick = () => {
-    localStorage.removeItem("loggedUser");
-    location.reload();
+    if (!valido) {
+        e.preventDefault();
+        alert(get_mensaje_error());
+        return false;
+    }
+
+    return true;
 }
-//borrar datos almacenados
-document.getElementById("borrar-datos-almacenados-button").onclick = () => {
-    localStorage.clear();
-    location.reload();
+
+
+function validarNombreUsuario() {
+    console.log("validando nombre usuario");
+    var elemento = document.getElementById("newUser");
+    if (elemento.value== "")
+    {
+        add_mensaje_error("El campo nombre no puede ser vacío");
+        return false;
+    }
+    if (elemento.value.length < 3) {
+        add_mensaje_error("usuario demasiado corto");
+        return false;
+    }
+    return true;
+}
+
+function validarPassword() {
+    const elemento = document.getElementById("newPassword");
+
+    if (elemento.value.trim() === "") {
+        add_mensaje_error("contraseña vacía");
+        return false;
+    }
+
+    if (elemento.value.length < 6) {
+        add_mensaje_error("contraseña mínima 6 caracteres");
+        return false;
+    }
+
+    return true;
+}
+
+function validarEmail() {
+    const elemento = document.getElementById("email");
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (elemento.value.trim() === "") {
+        add_mensaje_error("email vacío");
+        return false;
+    }
+
+    if (!regex.test(elemento.value)) {
+        add_mensaje_error("email inválido");
+        return false;
+    }
+
+    return true;
+}
+
+function validarRol() {
+    const rol = document.getElementById("rol").value;
+
+    if (rol === "") {
+        add_mensaje_error("rol no seleccionado");
+        return false;
+    }
+
+    return true;
+}
+
+function validarGenero() {
+    const genero = document.querySelector('input[name="genero"]:checked');
+
+    if (!genero) {
+        add_mensaje_error("género no seleccionado");
+        return false;
+    }
+
+    return true;
+}
+
+
+let errores = [];
+
+function add_mensaje_error(palabra) {
+    if (!errores.includes(palabra)) {
+        errores.push(palabra);
+    }
+}
+
+function get_mensaje_error() {
+    if (errores.length === 0) return "";
+    return "Usted ha introducido mal: " + errores.join(", ");
+}
+
+function clear_errores() {
+    errores = [];
 }
