@@ -76,6 +76,65 @@ body{
         }
     }
 
+    .gameInfo{
+        background-color: cyan;
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .gameButtons{
+            display: inline-block;
+            flex-direction: row;
+
+            button {
+                background-color: #6ab06a;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 6px 12px;
+                font-size: 16px;
+                font-family: "Lucida Console", monospace;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            button:hover {
+                background-color: #5a9c5a;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+            }
+
+            button:active {
+                background-color: #4a854a;
+                transform: translateY(0px);
+                box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+            }
+        }
+    }
+
+    .canvas-wrapper {
+        background: black;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: min(90vw, 800px);
+        height: min(60vh, 500px);
+        margin: 2em auto;
+        box-sizing: border-box;
+    }
+
+    canvas {
+        display: block;
+        width: 100%;    /* fill wrapper */
+        height: 100%;   /* fill wrapper */
+        background: white; /* optional: canvas background color */
+    }
+
     main{
         display: flex;
         flex: 1;

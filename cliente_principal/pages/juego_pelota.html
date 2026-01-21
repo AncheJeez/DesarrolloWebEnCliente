@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Juego Pelota</title>
+    <style>body {height: 100vh !important;}</style>
+</head>
+<body height="100vh">
+    <header>
+        <div class="container-header">
+            <h1>Juegos Reunidos</h1>
+        </div>
+        <div class="container-nav">
+            <a href="">Principal</a>
+            <a href="">Tienda</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Juegos
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+            <a href="">Administración</a>
+            <div id="profile-button" class="clickable">
+                <img src="/imagenes/account_circle.svg" alt="Profile" />
+            </div>
+        </div>
+    </header>
+
+    <div class="gameInfo">
+        <label id="lblTime">Tiempo:  00:30</label>
+        <label id="lblScore">Score: 0</label>
+        <div class="gameButtons">
+            <button id="btnStart">Start</button>
+        </div>
+    </div>
+    <div class="canvas-wrapper">
+        <canvas id="myCanvas"></canvas>
+    </div>
+
+    <footer>
+        Hey esto es el final de la página
+        <a href="./pages/contactanos.html">Contáctanos</a>
+    </footer>
+</body>
+<script type="text/javascript" src="../scripts/script_juego_pelota.js" defer></script>
+</html>
