@@ -1,6 +1,7 @@
 const c = document.getElementById("myCanvas");
 var scoreLabel = document.getElementById("lblScore");
 var timeLabel = document.getElementById("lblTime");
+var positionLabel = document.getElementById("lblPosition");
 const ctx = c.getContext("2d");
 
 let canvasWidth, canvasHeight;
@@ -79,7 +80,7 @@ function update() {
         if (box.y + box.height > canvasHeight) box.y = canvasHeight - box.height;
 
         if(isColliding(box, enemy)){
-            console.log("Has colisionado con un enemigo!");
+            addTextToScroll("Has colisionado!");
             increase_score();
             place_enemy();
         }
@@ -96,14 +97,18 @@ c.addEventListener("mousemove", (e) =>{
 
 c.addEventListener("click", () =>{
     if(!running) return;
-    score  += Math.floor(Math.random(10) * 10)+1;
-    scoreLabel.innerHTML = `Score: ${score}`;
+    clickTimeout = setTimeout(() => {
+        score  += Math.floor(Math.random(10) * 10)+1;
+        scoreLabel.innerHTML = `Score: ${score}`;
+        addTextToScroll("You clicked one!");
+    },200); //delay para q no haga este metodo i hace doble click
 });
 
 c.addEventListener("dblclick", () =>{
     if(!running) return;
     score  += 20;
     scoreLabel.innerHTML = `Score: ${score}`;
+    addTextToScroll("You doubled clicked!");
 });
 
 function draw() {
@@ -192,6 +197,18 @@ function getMousePosition(canvas, event) {
     let rect = canvas.getBoundingClientRect();
     let x = Math.floor(event.clientX - rect.left);
     let y = Math.floor(event.clientY - rect.top);
-    console.log("CoordX: " + x,
-        "CoordY: " + y);
+    positionLabel.innerHTML = `Position mouse: CoordX: ${x} | CoordY: ${y}`;
+}
+
+var textList = [];
+const logsDiv = document.getElementById("logs");
+function addTextToScroll(text){
+    if(textList.length < 5){
+        textList.push(text);
+    }else{
+        textList.shift();
+        textList.push(text);
+    }
+    logsDiv.innerHTML = textList.join("<br>");
+    // console.log(textList);
 }
