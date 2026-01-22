@@ -107,6 +107,8 @@ c.addEventListener("click", () =>{
 c.addEventListener("dblclick", () =>{
     if(!running) return;
     score  += 20;
+    clearTimeout(clickTimeout);
+    
     scoreLabel.innerHTML = `Score: ${score}`;
     addTextToScroll("You doubled clicked!");
 });
