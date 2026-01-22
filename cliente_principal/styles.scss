@@ -135,6 +135,22 @@ body{
         background: white; /* optional: canvas background color */
     }
 
+    .hidden {
+        display: none;
+    }
+
+    #instrucciones{
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: orange;
+        .hidden {
+            display: none;
+        }
+    }
+
     main{
         display: flex;
         flex: 1;

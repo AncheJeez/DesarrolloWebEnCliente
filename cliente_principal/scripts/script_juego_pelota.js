@@ -10,6 +10,20 @@ let score = 0;
 var running = false;
 var tiempoRestante = 30;
 
+//disable right click 🚀
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
+
+const contenido = document.querySelector("#instrucciones .hidden");
+
+document.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        contenido.classList.toggle("hidden");
+    }
+});
+
 function resizeCanvas() {
     const rect = c.parentElement.getBoundingClientRect();
     c.width = rect.width;
@@ -36,11 +50,17 @@ let keys = {
 };
 
 window.addEventListener("keydown", e => {
-    if (keys.hasOwnProperty(e.key)) keys[e.key] = true;
+    if (keys.hasOwnProperty(e.key)){
+        keys[e.key] = true;
+    }
+    e.preventDefault();
 });
 
 window.addEventListener("keyup", e => {
-    if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+    if (keys.hasOwnProperty(e.key)){
+        keys[e.key] = false;
+    }
+    e.preventDefault();
 });
 
 function update() {
@@ -64,24 +84,27 @@ function update() {
             place_enemy();
         }
 
-        c.addEventListener("mousemove", (e) =>{
-            // getMousePosition(c, e);
-        });
-
-        c.addEventListener("click", (e) =>{
-            console.log("Clicked");
-            score  += Math.floor(Math.random(10) * 10)+1;
-            if(e.detail == 2){
-                score += 20;
-            }
-            scoreLabel.innerHTML = `Score: ${score}`;
-        }, false);
-
     }
 
     draw();
     requestAnimationFrame(update);
 }
+
+c.addEventListener("mousemove", (e) =>{
+    getMousePosition(c, e);
+});
+
+c.addEventListener("click", () =>{
+    if(!running) return;
+    score  += Math.floor(Math.random(10) * 10)+1;
+    scoreLabel.innerHTML = `Score: ${score}`;
+});
+
+c.addEventListener("dblclick", () =>{
+    if(!running) return;
+    score  += 20;
+    scoreLabel.innerHTML = `Score: ${score}`;
+});
 
 function draw() {
     if (!box) return;
