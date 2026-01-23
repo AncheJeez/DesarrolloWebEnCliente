@@ -1,6 +1,7 @@
 -- Para crear proyecto React con Sass --
 npx create-react-app .
 npm install sass --save-dev
+npm install react-router-dom
 npm start
 
 ( Innecesario por que React incluye Sass )
