@@ -64,19 +64,6 @@ function update() {
             place_enemy();
         }
 
-        c.addEventListener("mousemove", (e) =>{
-            // getMousePosition(c, e);
-        });
-
-        c.addEventListener("click", (e) =>{
-            console.log("Clicked");
-            score  += Math.floor(Math.random(10) * 10)+1;
-            if(e.detail == 2){
-                score += 20;
-            }
-            scoreLabel.innerHTML = `Score: ${score}`;
-        }, false);
-
     }
 
     draw();
@@ -172,3 +159,20 @@ function getMousePosition(canvas, event) {
     console.log("CoordX: " + x,
         "CoordY: " + y);
 }
+
+c.addEventListener("mousemove", (e) =>{
+    getMousePosition(c, e);
+});
+
+c.addEventListener("click", () =>{
+    if(!running) return;
+        console.log("Clicked");
+        score  += Math.floor(Math.random(10) * 10)+1;
+        scoreLabel.innerHTML = `Score: ${score}`;
+});
+
+c.addEventListener("dblclick", () => {
+    if (!running) return;
+    score += 20;
+    scoreLabel.innerHTML = `Score: ${score}`;
+});
