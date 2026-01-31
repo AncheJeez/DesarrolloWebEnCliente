@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles.css">
-    <title>Juego Pelota</title>
-    <style>body {height: 100vh !important;}</style>
+    <title>Ejercicio DOM</title>
 </head>
-<body height="100vh">
+<body>
     <header>
         <div class="container-header">
             <h1>Juegos Reunidos</h1>
@@ -31,34 +30,32 @@
             </div>
         </div>
     </header>
+    <main>
+        <div class="dom-container">
+            <h2>Ejercicio DOM - Generador de Bloques</h2>
+            <p>Presiona el botón verda para generar un nuevo bloque dentro del padre. Cada bloque puede generar sus propios hijos.</p>
+            
+            <div id="root-block-1" class="block root-block">
+                <button class="add-child-btn">Añadir Hijo</button>
+                <div class="children-container"></div>
+            </div>
 
-    <div class="gameInfo">
-        <label id="lblTime">Tiempo:  00:30</label>
-        <label id="lblScore">Score: 0</label>
-        <label id="lblPosition">Position mouse:</label>
-        <div class="gameButtons">
-            <button id="btnStart">Start</button>
-        </div>
-    </div>
-    <div class="gameArea">
-        <div class="canvas-wrapper">
-            <canvas id="myCanvas"></canvas>
-        </div>
-        <div id="logs"></div>
-    </div>
-    <div id="instrucciones">
-        <div class="hidden">
-            Capturar bloque rojo -> 1 punto<br>
-            Dar click al canvas -> entre 1-10 puntos<br>
-            Dar doble click al canvas -> 20 puntos<br>
-            Controles -> flechas del teclado y click del raton
-        </div>
-    </div>
+            <div id="root-block-2" class="block root-block">
+                <button class="add-child-btn">Añadir Hijo</button>
+                <div class="children-container"></div>
+            </div>
 
+            <div id="root-block-3" class="block root-block">
+                <button class="add-child-btn">Añadir Hijo</button>
+                <div class="children-container"></div>
+            </div>
+        </div>
+    </main>
     <footer>
         Hey esto es el final de la página
         <a href="./pages/contactanos.html">Contáctanos</a>
     </footer>
+
+    <script src="../scripts/script_dom_ejercicio.js"></script>
 </body>
-<script type="text/javascript" src="../scripts/script_juego_pelota.js" defer></script>
 </html>

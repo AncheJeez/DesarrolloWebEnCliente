@@ -106,6 +106,13 @@ body .gameInfo .gameButtons button:active {
   transform: translateY(0px);
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
 }
+body .gameArea {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 2em auto;
+}
 body .canvas-wrapper {
   background: black;
   padding: 5px;
@@ -114,7 +121,6 @@ body .canvas-wrapper {
   align-items: center;
   width: min(90vw, 800px);
   height: min(60vh, 500px);
-  margin: 2em auto;
   box-sizing: border-box;
 }
 body canvas {
@@ -122,6 +128,31 @@ body canvas {
   width: 100%; /* fill wrapper */
   height: 100%; /* fill wrapper */
   background: white; /* optional: canvas background color */
+}
+body #logs {
+  width: 200px;
+  padding-top: 5px;
+  max-height: min(60vh, 500px);
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 14px;
+}
+body .hidden {
+  display: none;
+}
+body #instrucciones {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: orange;
+}
+body #instrucciones .hidden {
+  display: none;
 }
 body main {
   display: flex;
@@ -206,4 +237,73 @@ body footer {
 
 .hidden {
   display: none !important;
+}
+
+.dom-container {
+  max-width: 1200px;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  border: 3px solid #90EE90;
+}
+.dom-container h2 {
+  color: #333;
+  margin-bottom: 1em;
+}
+.dom-container p {
+  color: #666;
+  margin-bottom: 1.5em;
+  font-size: 14px;
+}
+
+.block {
+  background-color: #fff;
+  border: 2px solid #90EE90;
+  border-radius: 6px;
+  padding: 1em;
+  margin: 0.5em 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.block .block-label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5em;
+  font-size: 14px;
+}
+.block .add-child-btn {
+  background-color: #90EE90;
+  color: #fff;
+  border: none;
+  padding: 0.5em 1em;
+  margin-right: 0.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+.block .add-child-btn:hover {
+  background-color: #6BAD6B;
+}
+.block .delete-btn {
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+.block .delete-btn:hover {
+  background-color: #cc0000;
+}
+.block .children-container {
+  margin-top: 1em;
+  padding-left: 1.5em;
+  border-left: 3px solid #90EE90;
+}
+.block .children-container .block {
+  margin-left: 0.5em;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,6 +1,7 @@
 const c = document.getElementById("myCanvas");
 var scoreLabel = document.getElementById("lblScore");
 var timeLabel = document.getElementById("lblTime");
+var positionLabel = document.getElementById("lblPosition");
 const ctx = c.getContext("2d");
 
 let canvasWidth, canvasHeight;
@@ -9,6 +10,20 @@ let enemy;
 let score = 0;
 var running = false;
 var tiempoRestante = 30;
+
+//disable right click 🚀
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
+
+const contenido = document.querySelector("#instrucciones .hidden");
+
+document.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        contenido.classList.toggle("hidden");
+    }
+});
 
 function resizeCanvas() {
     const rect = c.parentElement.getBoundingClientRect();
@@ -36,11 +51,17 @@ let keys = {
 };
 
 window.addEventListener("keydown", e => {
-    if (keys.hasOwnProperty(e.key)) keys[e.key] = true;
+    if (keys.hasOwnProperty(e.key)){
+        keys[e.key] = true;
+    }
+    e.preventDefault();
 });
 
 window.addEventListener("keyup", e => {
-    if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+    if (keys.hasOwnProperty(e.key)){
+        keys[e.key] = false;
+    }
+    e.preventDefault();
 });
 
 function update() {
@@ -59,7 +80,7 @@ function update() {
         if (box.y + box.height > canvasHeight) box.y = canvasHeight - box.height;
 
         if(isColliding(box, enemy)){
-            console.log("Has colisionado con un enemigo!");
+            addTextToScroll("Has colisionado!");
             increase_score();
             place_enemy();
         }
@@ -69,6 +90,28 @@ function update() {
     draw();
     requestAnimationFrame(update);
 }
+
+c.addEventListener("mousemove", (e) =>{
+    getMousePosition(c, e);
+});
+
+c.addEventListener("click", () =>{
+    if(!running) return;
+    clickTimeout = setTimeout(() => {
+        score  += Math.floor(Math.random(10) * 10)+1;
+        scoreLabel.innerHTML = `Score: ${score}`;
+        addTextToScroll("You clicked one!");
+    },200); //delay para q no haga este metodo i hace doble click
+});
+
+c.addEventListener("dblclick", () =>{
+    if(!running) return;
+    score  += 20;
+    clearTimeout(clickTimeout);
+    
+    scoreLabel.innerHTML = `Score: ${score}`;
+    addTextToScroll("You doubled clicked!");
+});
 
 function draw() {
     if (!box) return;
