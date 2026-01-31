@@ -33,21 +33,32 @@
     <main>
         <div class="dom-container">
             <h2>Ejercicio DOM - Generador de Bloques</h2>
-            <p>Presiona el botón verda para generar un nuevo bloque dentro del padre. Cada bloque puede generar sus propios hijos.</p>
+            <p>Presiona un contenedor para seleccionarlo. Usa los botones de abajo para agregar un hijo o eliminarlo.</p>
             
             <div id="root-block-1" class="block root-block">
-                <button class="add-child-btn">Añadir Hijo</button>
                 <div class="children-container"></div>
             </div>
 
             <div id="root-block-2" class="block root-block">
-                <button class="add-child-btn">Añadir Hijo</button>
                 <div class="children-container"></div>
             </div>
 
             <div id="root-block-3" class="block root-block">
-                <button class="add-child-btn">Añadir Hijo</button>
                 <div class="children-container"></div>
+            </div>
+
+            <div class="button-panel">
+                <button id="move-up-global">Ir al Padre</button>
+                <button id="first-child-global">Ir al Primer Hijo</button>
+                <button id="last-child-global">Ir al Último Hijo</button>
+                <button id="next-sibling-global">Siguiente Hermano</button>
+                <button id="prev-sibling-global">Anterior Hermano</button>
+                <button id="add-child-global">Añadir Hijo</button>
+                <button id="delete-block-global">Eliminar Bloque</button>
+            </div>
+            <div class="info-panel">
+                <h3>Información del Bloque Seleccionado</h3>
+                <p id="selected-block-info">Ningún bloque seleccionado</p>
             </div>
         </div>
     </main>
