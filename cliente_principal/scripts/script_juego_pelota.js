@@ -199,18 +199,23 @@ function getMousePosition(canvas, event) {
     let rect = canvas.getBoundingClientRect();
     let x = Math.floor(event.clientX - rect.left);
     let y = Math.floor(event.clientY - rect.top);
-    positionLabel.innerHTML = `Position mouse: CoordX: ${x} | CoordY: ${y}`;
+    console.log("CoordX: " + x,
+        "CoordY: " + y);
 }
 
-var textList = [];
-const logsDiv = document.getElementById("logs");
-function addTextToScroll(text){
-    if(textList.length < 5){
-        textList.push(text);
-    }else{
-        textList.shift();
-        textList.push(text);
-    }
-    logsDiv.innerHTML = textList.join("<br>");
-    // console.log(textList);
-}
+c.addEventListener("mousemove", (e) =>{
+    getMousePosition(c, e);
+});
+
+c.addEventListener("click", () =>{
+    if(!running) return;
+        console.log("Clicked");
+        score  += Math.floor(Math.random(10) * 10)+1;
+        scoreLabel.innerHTML = `Score: ${score}`;
+});
+
+c.addEventListener("dblclick", () => {
+    if (!running) return;
+    score += 20;
+    scoreLabel.innerHTML = `Score: ${score}`;
+});
