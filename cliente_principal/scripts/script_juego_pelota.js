@@ -219,3 +219,22 @@ c.addEventListener("dblclick", () => {
     score += 20;
     scoreLabel.innerHTML = `Score: ${score}`;
 });
+
+function addTextToScroll(text) {
+    const log = document.getElementById("logs");
+    if (!log) return;
+
+    const line = document.createElement("div");
+
+    line.textContent = `${text}`;
+
+    log.appendChild(line);
+
+    // limitar tamaño a 30 mensajes
+    while (log.children.length > 10) {
+        log.removeChild(log.firstChild);
+    }
+
+    // auto-scroll
+    log.scrollTop = log.scrollHeight;
+}
