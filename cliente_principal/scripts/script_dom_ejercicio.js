@@ -177,7 +177,8 @@ function irAlPadre(blockElement) {
 function irAlPrimerHijo(blockElement) {
     // Encontrar el primer hijo
     const childrenContainer = blockElement.querySelector('.children-container');
-    const firstChild = childrenContainer.querySelector(':scope > .block');
+    // const firstChild = childrenContainer.querySelector(':scope > .block');
+    const firstChild = childrenContainer.children[0];
     
     if (!firstChild) {
         alert('Este bloque no tiene hijos');
@@ -200,14 +201,14 @@ function irAlPrimerHijo(blockElement) {
 function irAlUltimoHijo(blockElement) {
     // Encontrar el último hijo
     const childrenContainer = blockElement.querySelector('.children-container');
-    const allChildren = childrenContainer.querySelectorAll(':scope > .block');
+    // const allChildren = childrenContainer.querySelectorAll(':scope > .block');
+    // if (allChildren.length === 0) {
+    //     alert('Este bloque no tiene hijos');
+    //     return;
+    // }
     
-    if (allChildren.length === 0) {
-        alert('Este bloque no tiene hijos');
-        return;
-    }
-    
-    const lastChild = allChildren[allChildren.length - 1];
+    // const lastChild = allChildren[allChildren.length - 1];
+    const lastChild = childrenContainer.lastElementChild;
     
     // Deseleccionar el bloque actual
     if (selectedBlock) {
