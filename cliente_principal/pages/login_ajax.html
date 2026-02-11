@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="loginForm">
+        <input type="text" id="username" name="username" placeholder="Usuario" required>
+        <input type="password" id="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Iniciar sesión</button>
+    </form>
+    <div id="error" style="display:none; color:red;">Usuario o contraseña incorrectos</div>
+
+    <div id="userMenu" style="display:none;">
+        <button id="logoutButton">Cerrar sesión</button>
+        <button id="updateButton">Actualizar datos</button>
+        <button id="deleteAccountButton">Darse de baja</button>
+    </div>
+
+    <div id="updateForm" style="display:none;">
+        <input type="text" id="updateUsername" placeholder="Nuevo usuario" required>
+        <input type="password" id="updatePassword" placeholder="Nueva contraseña" required>
+        <button id="saveChangesButton">Guardar cambios</button>
+    </div>
+
+
+</body>
+</html>
