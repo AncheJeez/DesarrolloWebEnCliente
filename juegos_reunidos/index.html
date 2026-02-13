@@ -32,6 +32,7 @@
     </header>
     <main>
 
+        <!--LOGEARSE-->
         <div class="container-form" id="login-container">
             <p>Login</p>
             <form id="loginForm" action="" method="post">
@@ -46,7 +47,20 @@
                 Haga click <a href="#" id="show-register">aquí</a> para registrarse.
             </div>
         </div>
-
+        <div class="container-form" id="login-container">
+            <p>Login servidor xamp php</p>
+            <form action="./pages/login.php" method="POST" id="loginForm">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required><br><br>
+                
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required><br><br>
+                
+                <button type="submit">Iniciar sesión</button>
+            </form>
+        </div>
+        
+        <!--REGISTRARSE-->
         <div class="container-form hidden" id="register-container">
             <p>Registro</p>
                 <form id="registerForm">
@@ -96,6 +110,15 @@
                     ¿Ya tienes cuenta? <a href="#" id="show-login">Volver al login</a>
                 </div>
         </div>
+        <div class="container-form hidden" id="register-container">
+            <p>Login server xamp php</p>
+            <form action="./pages/registro.php" method="POST">
+                Usuario: <input type="text" name="usuario"><br>
+                Email: <input type="email" name="email"><br>
+                Contraseña: <input type="password" name="contrasena"><br>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
 
         <div id="sidebar" class="sidebar">
             <div id="back-button" class="clickable">
@@ -103,7 +126,8 @@
             </div>
             <button id="close-session-button">Cerrar sesión</button><br/>
             <button id="borrar-datos-almacenados-button">Borrar todos los datos almacenados</button><br/>
-            <a href="./pages/login.html">Login ajax</a><br/>
+            <!-- <a href="./pages/login.html">Login servidor</a><br/>
+            <a href="./pages/registro.html">Registro servidor</a><br/> -->
         </div>
     </main>
     <footer>

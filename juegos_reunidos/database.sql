@@ -1,3 +1,5 @@
+CREATE DATABASE juegos_reunidos;
+
 CREATE TABLE usuarios (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
