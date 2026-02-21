@@ -44,7 +44,7 @@ function iniciar() {
 
         if (userFound) {
             localStorage.setItem("loggedUser", username);
-            alert("Login correcto");
+            alert(`¡Bienvenido ${username}! Has iniciado sesión correctamente.`);
             mostrarUsuario();
         } else {
             alert("Usuario o contraseña incorrectos");
@@ -59,6 +59,8 @@ function iniciar() {
         const newUser = document.getElementById("newUser").value.trim();
         const newPassword = document.getElementById("newPassword").value.trim();
         const email = document.getElementById("email").value.trim();
+        const telefono = document.getElementById("telefono").value.trim();
+        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
         const rol = document.getElementById("rol").value;
         const genero = document.querySelector('input[name="genero"]:checked').value;
         const recibirCorreos = document.getElementById("recibirCorreos").checked;
@@ -74,6 +76,8 @@ function iniciar() {
             user: newUser,
             password: newPassword,
             email: email,
+            telefono: telefono,
+            fechaNacimiento: fechaNacimiento,
             rol: rol,
             genero: genero,
             recibirCorreos: recibirCorreos
@@ -115,6 +119,8 @@ function set_up_validated_users(){
                 user: "admin",
                 password: "admin",
                 email: "admin@mail.com",
+                telefono: "12345678",
+                fechaNacimiento: "1990-01-15",
                 rol: "administrador",
                 genero: "masculino",
                 "recibirCorreos": true
@@ -123,6 +129,8 @@ function set_up_validated_users(){
                 user: "andres",
                 password: "andres",
                 email: "andres@mail.com",
+                telefono: "87654321",
+                fechaNacimiento: "1995-06-20",
                 rol: "usuario",
                 genero: "masculino",
                 "recibirCorreos": true
@@ -131,6 +139,8 @@ function set_up_validated_users(){
                 user: "testing",
                 password: "testing",
                 email: "testing@mail.com",
+                telefono: "11223344",
+                fechaNacimiento: "1992-03-10",
                 rol: "usuario",
                 genero: "otros",
                 "recibirCorreos": false
@@ -157,6 +167,8 @@ function validar(e) {
     if (!validarNombreUsuario()) valido = false;
     if (!validarPassword()) valido = false;
     if (!validarEmail()) valido = false;
+    if (!validarTelefono()) valido = false;
+    if (!validarFechaNacimiento()) valido = false;
     if (!validarRol()) valido = false;
     if (!validarGenero()) valido = false;
 
@@ -234,6 +246,40 @@ function validarGenero() {
 
     if (!genero) {
         add_mensaje_error("género no seleccionado");
+        return false;
+    }
+
+    return true;
+}
+
+function validarTelefono() {
+    const elemento = document.getElementById("telefono");
+    const valor = elemento.value.trim();
+
+    if (valor === "") {
+        add_mensaje_error("teléfono vacío");
+        return false;
+    }
+
+    if (!/^\d+$/.test(valor)) {
+        add_mensaje_error("teléfono debe contener solo números");
+        return false;
+    }
+
+    if (valor.length !== 8) {
+        add_mensaje_error("teléfono debe tener exactamente 8 números");
+        return false;
+    }
+
+    return true;
+}
+
+function validarFechaNacimiento() {
+    const elemento = document.getElementById("fechaNacimiento");
+    const valor = elemento.value.trim();
+
+    if (valor === "") {
+        add_mensaje_error("fecha de nacimiento vacía");
         return false;
     }
 

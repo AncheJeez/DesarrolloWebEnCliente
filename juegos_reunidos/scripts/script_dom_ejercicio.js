@@ -1,8 +1,29 @@
 window.onload = iniciar;
 
-let selectedBlock = null; // Variable global para almacenar el bloque seleccionado
+let indice = 0;
+let imagenes = [
+    "/juegos_reunidos/imagenes/test-1.png",
+    "/juegos_reunidos/imagenes/test-2.jpg",
+    "/juegos_reunidos/imagenes/test-3.jpg"
+];
+
+let selectedBlock = null;
 
 function iniciar() {
+
+    // const imgBtn = document.getElementById('cambiar-img-btn');
+    // imgBtn.addEventListener('click', function() {
+    //     const img = document.getElementById("miImagen");
+    //     console.count("Imagen cambiada");
+
+    //     indice++;
+    //     if (indice >= imagenes.length) {
+    //         indice = 0;
+    //     }
+
+    //     img.src = imagenes[indice];
+    // });
+
     // ponemos a todos los bloques el numero correspondiente
     const rootBlocks = document.querySelectorAll('.root-block');
     rootBlocks.forEach((rootBlock, index) => {
@@ -29,6 +50,8 @@ function iniciar() {
     const nextSiblingBtn = document.getElementById('next-sibling-global');
     const prevSiblingBtn = document.getElementById('prev-sibling-global');
 
+
+    //PONEMOS LOS EVENT LISTENERS
     moveUpBtn.addEventListener('click', () => {
         if (selectedBlock) {
             irAlPadre(selectedBlock);
@@ -116,6 +139,7 @@ function agregarHijo(blockElement) {
     const parentPath = blockElement.getAttribute('data-path');
     const childrenContainer = blockElement.querySelector('.children-container');
     
+    //buscamos si tiene hijos y le asignamos el número del siguiente hijo
     const existingChildren = childrenContainer.querySelectorAll(':scope > .block').length;
     const childNumber = existingChildren + 1;
     //pillo la ruta del padre y le añado .número hijo

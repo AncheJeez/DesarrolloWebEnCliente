@@ -162,7 +162,7 @@ body main {
 body main .container-form {
   background-color: yellow;
   width: 50%;
-  height: 40%;
+  height: auto;
   border-radius: 20px;
   border: 2px solid black;
   margin: 1em;
@@ -185,10 +185,21 @@ body main .container-form form label {
   min-width: 48%;
   margin-bottom: 10px;
 }
-body main .container-form form input[type=text], body main .container-form form input[type=password], body main .container-form form input[type=email] {
+body main .container-form form input[type=text], body main .container-form form input[type=password], body main .container-form form input[type=email], body main .container-form form input[type=tel], body main .container-form form input[type=date] {
   min-width: 45%;
   margin-bottom: 10px;
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+body main .container-form form select {
+  min-width: 45%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 body main .container-form form input[type=submit] {
   width: 100%;
@@ -244,6 +255,27 @@ body footer {
   margin: 2em auto;
   padding: 2em;
   background-color: rgb(106, 176, 106);
+}
+.dom-container button {
+  background-color: #90EE90;
+  color: #fff;
+  border: none;
+  padding: 0.7em 1.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+.dom-container button:hover {
+  background-color: #6BAD6B;
+}
+.dom-container .container-image {
+  padding: 2rem;
+}
+.dom-container .container-image img {
+  width: 200px;
+  height: auto;
 }
 .dom-container h2 {
   margin-bottom: 1em;

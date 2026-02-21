@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/juegos_reunidos/pages/login_php_style.css">
+    <title>Login PHP</title>
+</head>
+<body>
+    <div class="auth-container">
+
+    <div class="form-box active" id="loginBox">
+        <h2>Iniciar Sesión</h2>
+        <form action="/juegos_reunidos/pages/login.php" method="POST">
+            <input type="text" name="nombre_usuario" placeholder="Usuario" required>
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p class="switch-text">
+            ¿No tienes cuenta? 
+            <span id="showRegister">Regístrate</span>
+        </p>
+    </div>
+
+    <div class="form-box" id="registerBox">
+        <h2>Registro</h2>
+        <form action="/juegos_reunidos/pages/registro.php" method="POST">
+            <input type="text" name="nombre_usuario" placeholder="Usuario" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
+            <button type="submit">Crear cuenta</button>
+        </form>
+        <p class="switch-text">
+            ¿Ya tienes cuenta? 
+            <span id="showLogin">Inicia sesión</span>
+        </p>
+    </div>
+
+</div>
+    <script>
+        document.getElementById("showRegister").addEventListener("click", function() {
+        document.getElementById("loginBox").classList.remove("active");
+        document.getElementById("registerBox").classList.add("active");
+    });
+
+    document.getElementById("showLogin").addEventListener("click", function() {
+        document.getElementById("registerBox").classList.remove("active");
+        document.getElementById("loginBox").classList.add("active");
+    });
+    </script>
+</body>
+</html>
