@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <title>Panel de Administración - Usuarios</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="../pages/index.html">Juegos Reunidos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="./index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="./perfil.html">Perfil</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-3 d-flex align-items-center gap-3">
+        <label for="modoConexion" class="form-label mb-0">Modo de conexión:</label>
+        <select id="modoConexion" class="form-select" style="width: 200px;">
+            <option value="local">LocalStorage</option>
+            <option value="server">Servidor</option>
+        </select>
+        <button id="cargarModo" class="btn btn-primary">Cargar datos</button>
+    </div>
+
+    <div class="container my-4">
+        <h2>Panel de Administración — Usuarios</h2>
+        <p id="adminNotice" class="text-danger"></p>
+        <div class="table-responsive">
+            <table class="table table-striped" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Fecha Nac.</th>
+                        <th>Rol</th>
+                        <th>Número favorito</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal de edición -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editUserForm">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Usuario</label>
+                                <input type="text" id="editUsername" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Contraseña</label>
+                                <input type="text" id="editPassword" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="editEmail" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Teléfono</label>
+                                <input type="text" id="editTelefono" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Fecha de nacimiento</label>
+                                <input type="date" id="editFecha" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Rol</label>
+                                <select id="editRol" class="form-select">
+                                    <option value="usuario">usuario</option>
+                                    <option value="administrador">administrador</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Número favorito</label>
+                                <input type="number" id="editFavorito" class="form-control" min="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h3 class="text-center">Cantidad de usuarios por número favorito</h3>
+        <canvas id="favoritoChart" width="400" height="200"></canvas>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-success text-white mt-auto py-4">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <!-- Texto del footer -->
+            <span>© 2026 Juegos Reunidos. Todos los derechos reservados.</span>
+            
+            <!-- Enlaces -->
+            <div>
+                <a href="./contactanos.html" class="text-white me-3 text-decoration-none">Contáctanos</a>
+                <a href="#" class="text-white me-3 text-decoration-none">Política de privacidad</a>
+                <a href="#" class="text-white text-decoration-none">Términos y condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../scripts/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

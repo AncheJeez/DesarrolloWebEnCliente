@@ -1,0 +1,141 @@
+.dom-container {
+  max-width: 1200px;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: rgb(106, 176, 106);
+}
+.dom-container button {
+  background-color: #90EE90;
+  color: #fff;
+  border: none;
+  padding: 0.7em 1.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+.dom-container button:hover {
+  background-color: #6BAD6B;
+}
+.dom-container .container-image {
+  padding: 2rem;
+}
+.dom-container .container-image img {
+  width: 200px;
+  height: auto;
+}
+.dom-container h2 {
+  margin-bottom: 1em;
+}
+.dom-container p {
+  margin-bottom: 1.5em;
+  font-size: 14px;
+}
+
+.block {
+  background-color: #fff;
+  padding: 1em;
+  margin: 0.5em 0;
+  border: 2px solid #000000;
+}
+.block .block-label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5em;
+  font-size: 14px;
+}
+.block .add-child-btn {
+  background-color: #90EE90;
+  color: #fff;
+  padding: 0.5em 1em;
+  margin-right: 0.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+.block .add-child-btn:hover {
+  background-color: #6BAD6B;
+}
+.block .delete-btn {
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+.block .delete-btn:hover {
+  background-color: #cc0000;
+}
+.block .children-container {
+  margin-top: 1em;
+  padding-left: 1.5em;
+  min-height: 20px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.block .children-container .block {
+  margin-left: 0.5em;
+}
+
+.block.selected {
+  background-color: rgb(144, 238, 144) !important;
+  border-color: red !important;
+}
+
+.button-panel {
+  display: flex;
+  gap: 1em;
+  margin-top: 2em;
+  padding-top: 1.5em;
+}
+.button-panel button {
+  background-color: #90EE90;
+  color: #fff;
+  border: none;
+  padding: 0.7em 1.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+.button-panel button:hover {
+  background-color: #6BAD6B;
+}
+.button-panel #add-child-global {
+  background-color: #585ae5;
+}
+.button-panel #add-child-global:hover {
+  background-color: #181be3;
+}
+.button-panel #move-up-global, .button-panel #first-child-global, .button-panel #last-child-global {
+  background-color: #d88241;
+}
+.button-panel #move-up-global:hover, .button-panel #first-child-global:hover, .button-panel #last-child-global:hover {
+  background-color: #b44e00;
+}
+.button-panel #delete-block-global {
+  background-color: #ff6b6b;
+}
+.button-panel #delete-block-global:hover {
+  background-color: #cc0000;
+}
+
+.info-panel {
+  margin-top: 1.5em;
+  padding: 1em;
+  background-color: #ffffff;
+}
+.info-panel h3 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.1em;
+}
+.info-panel p {
+  margin: 0;
+  line-height: 1.5;
+  color: #333;
+}/*# sourceMappingURL=styles.css.map */

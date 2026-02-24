@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Cliente Principal</title>
+</head>
+<body>
+    <header>
+        <div class="container-header">
+            <h1>Juegos Reunidos</h1>
+        </div>
+        <div class="container-nav">
+            <a href="/juegos_reunidos/index.html">Principal</a>
+            <a href="/juegos_reunidos/pages/login_php.html">Login PHP</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Juegos
+                </button>
+                <div class="dropdown-content">
+                    <a href="/juegos_reunidos/pages/juego_pelota.html">Juego eventos</a>
+                    <a href="/juegos_reunidos/pages/dom_ejercicio.html">Ejercicio DOM</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+            <a href="">Administración</a>
+            <div id="profile-button" class="clickable">
+                <img src="/juegos_reunidos/imagenes/account_circle.svg" alt="Profile" />
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-form">
+            <p>Contáctanos</p>
+            <form id="contactForm" action="" method="post">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="name" required/>
+
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" required>
+
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" required>
+
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" rows="5" cols="33" required></textarea>
+                    
+                    <input type="submit" value="Enviar formulario">
+            </form>
+        </div>
+    </main>
+    <footer>
+        Hey esto es el final de la página
+        <a href="contactanos.html">Contáctanos</a>
+    </footer>
+    <script type="module" src="../scripts/script_contactanos.js"></script>
+</body>
+</html>

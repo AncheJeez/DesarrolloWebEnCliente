@@ -1,0 +1,14 @@
+body, html {
+    height: 100%;
+}
+.card-center {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+    min-width: 300px;
+    max-width: 400px;
+    padding: 2rem;
+}
